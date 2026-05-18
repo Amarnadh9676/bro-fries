@@ -48,7 +48,6 @@ function Dashboard() {
             style={{
               width: "80px",
               height: "80px",
-              objectFit: "cover",
               borderRadius: "20px"
             }}
           />
@@ -56,8 +55,7 @@ function Dashboard() {
           <h1
             style={{
               color: "#ffb400",
-              fontSize: "40px",
-              margin: "0"
+              fontSize: "40px"
             }}
           >
             Bro Fries
@@ -153,27 +151,18 @@ function Dashboard() {
         }}
       >
 
-        <div
-          style={{
-            flex: "1"
-          }}
-        >
+        <div>
 
           <h1
             style={{
-              fontSize: "75px",
-              lineHeight: "90px",
-              marginBottom: "20px"
+              fontSize: "70px",
+              lineHeight: "90px"
             }}
           >
             GOOD FOOD
             <br />
 
-            <span
-              style={{
-                color: "#ffb400"
-              }}
-            >
+            <span style={{ color: "#ffb400" }}>
               GOOD VIBES
             </span>
 
@@ -182,29 +171,11 @@ function Dashboard() {
           <p
             style={{
               fontSize: "22px",
-              color: "#cbd5e1",
-              marginBottom: "30px"
+              color: "#cbd5e1"
             }}
           >
             Crispy fries, juicy burgers and refreshing drinks 🍔🍟🥤
           </p>
-
-          <button
-            onClick={() => navigate("/menu")}
-            style={{
-              background: "#ffb400",
-              color: "black",
-              border: "none",
-              padding: "15px 35px",
-              borderRadius: "14px",
-              cursor: "pointer",
-              fontSize: "18px",
-              fontWeight: "bold",
-              marginRight: "20px"
-            }}
-          >
-            🍟 Order Now
-          </button>
 
         </div>
 
@@ -216,21 +187,6 @@ function Dashboard() {
             borderRadius: "30px"
           }}
         />
-
-      </div>
-
-      {/* Footer */}
-
-      <div
-        style={{
-          textAlign: "center",
-          marginTop: "50px",
-          color: "#94a3b8",
-          fontSize: "18px"
-        }}
-      >
-
-        © 2026 Bro Fries. Developed by Madala Amarnadh 💛
 
       </div>
 
