@@ -48,14 +48,16 @@ function Dashboard() {
             style={{
               width: "80px",
               height: "80px",
-              borderRadius: "20px"
+              borderRadius: "20px",
+              objectFit: "cover"
             }}
           />
 
           <h1
             style={{
               color: "#ffb400",
-              fontSize: "40px"
+              fontSize: "40px",
+              margin: "0"
             }}
           >
             Bro Fries
@@ -162,7 +164,11 @@ function Dashboard() {
             GOOD FOOD
             <br />
 
-            <span style={{ color: "#ffb400" }}>
+            <span
+              style={{
+                color: "#ffb400"
+              }}
+            >
               GOOD VIBES
             </span>
 
@@ -177,6 +183,23 @@ function Dashboard() {
             Crispy fries, juicy burgers and refreshing drinks 🍔🍟🥤
           </p>
 
+          <button
+            onClick={() => navigate("/menu")}
+            style={{
+              background: "#ffb400",
+              color: "black",
+              border: "none",
+              padding: "15px 35px",
+              borderRadius: "14px",
+              cursor: "pointer",
+              fontSize: "18px",
+              fontWeight: "bold",
+              marginTop: "20px"
+            }}
+          >
+            🍟 Order Now
+          </button>
+
         </div>
 
         <img
@@ -184,7 +207,8 @@ function Dashboard() {
           alt="burger"
           style={{
             width: "450px",
-            borderRadius: "30px"
+            borderRadius: "30px",
+            maxWidth: "100%"
           }}
         />
 
