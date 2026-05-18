@@ -149,8 +149,7 @@ function Dashboard() {
           gap: "40px",
           background: "#0f172a",
           padding: "40px",
-          borderRadius: "30px",
-          boxShadow: "0 0 30px rgba(255,180,0,0.15)"
+          borderRadius: "30px"
         }}
       >
 
@@ -184,12 +183,10 @@ function Dashboard() {
             style={{
               fontSize: "22px",
               color: "#cbd5e1",
-              marginBottom: "30px",
-              maxWidth: "600px"
+              marginBottom: "30px"
             }}
           >
-            Crispy fries, juicy burgers and refreshing drinks
-            made with love just for you 🍔🍟🥤
+            Crispy fries, juicy burgers and refreshing drinks 🍔🍟🥤
           </p>
 
           <button
@@ -209,37 +206,16 @@ function Dashboard() {
             🍟 Order Now
           </button>
 
-          <button
-            onClick={() => navigate("/cart")}
-            style={{
-              background: "transparent",
-              color: "white",
-              border: "2px solid #ffb400",
-              padding: "15px 35px",
-              borderRadius: "14px",
-              cursor: "pointer",
-              fontSize: "18px"
-            }}
-          >
-            🛒 View Cart
-          </button>
-
         </div>
 
-        <div>
-
-          <img
-            src={burger}
-            alt="burger"
-            style={{
-              width: "500px",
-              maxWidth: "100%",
-              borderRadius: "30px",
-              boxShadow: "0 0 40px rgba(255,180,0,0.3)"
-            }}
-          />
-
-        </div>
+        <img
+          src={burger}
+          alt="burger"
+          style={{
+            width: "450px",
+            borderRadius: "30px"
+          }}
+        />
 
       </div>
 
