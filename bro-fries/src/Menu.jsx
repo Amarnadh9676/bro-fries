@@ -17,6 +17,9 @@ function Menu() {
   // Search State
   const [search, setSearch] = useState("");
 
+  // Category State
+  const [category, setCategory] = useState("All");
+
   const foods = [
     {
       name: "Veg Burger",
@@ -50,12 +53,35 @@ function Menu() {
     }
   ];
 
-  // Search Filter
-  const filteredFoods = foods.filter((food) =>
-    food.name
-      .toLowerCase()
-      .includes(search.toLowerCase())
-  );
+  // Search + Category Filter
+
+  const filteredFoods = foods.filter((food) => {
+
+    const matchesSearch =
+      food.name
+        .toLowerCase()
+        .includes(search.toLowerCase());
+
+    const matchesCategory =
+
+      category === "All"
+
+        ? true
+
+        : category === "Burger"
+        ? food.name.includes("Burger")
+
+        : category === "Fries"
+        ? food.name.includes("Fries")
+
+        : category === "Drinks"
+        ? food.name.includes("Drinks")
+
+        : true;
+
+    return matchesSearch && matchesCategory;
+
+  });
 
   return (
 
@@ -85,7 +111,7 @@ function Menu() {
       <div
         style={{
           textAlign: "center",
-          marginBottom: "40px"
+          marginBottom: "30px"
         }}
       >
 
@@ -106,6 +132,38 @@ function Menu() {
         />
 
       </div>
+
+      {/* Category Buttons */}
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          gap: "15px",
+          marginBottom: "40px",
+          flexWrap: "wrap"
+        }}
+      >
+
+        <button onClick={() => setCategory("All")}>
+          All
+        </button>
+
+        <button onClick={() => setCategory("Burger")}>
+          Burgers
+        </button>
+
+        <button onClick={() => setCategory("Fries")}>
+          Fries
+        </button>
+
+        <button onClick={() => setCategory("Drinks")}>
+          Drinks
+        </button>
+
+      </div>
+
+      {/* Food Cards */}
 
       <div
         style={{
