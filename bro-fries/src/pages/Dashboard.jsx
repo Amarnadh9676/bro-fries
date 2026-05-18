@@ -47,6 +47,8 @@ function Dashboard() {
             alt="logo"
             style={{
               width: "80px",
+              height: "80px",
+              objectFit: "cover",
               borderRadius: "20px"
             }}
           />
@@ -54,7 +56,8 @@ function Dashboard() {
           <h1
             style={{
               color: "#ffb400",
-              fontSize: "40px"
+              fontSize: "40px",
+              margin: "0"
             }}
           >
             Bro Fries
