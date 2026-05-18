@@ -60,7 +60,7 @@ function Dashboard() {
               margin: "0"
             }}
           >
-            Bro Fries
+            Bro Fries 🔥
           </h1>
 
         </div>
