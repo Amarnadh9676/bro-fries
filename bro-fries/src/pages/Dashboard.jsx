@@ -1,11 +1,17 @@
 import { useNavigate } from "react-router-dom";
 
+import { useContext } from "react";
+import { CartContext } from "../Context/CartContext";
+
 import logo from "../images/logo.png";
 import burger from "../images/logo.png";
 
 function Dashboard() {
 
   const navigate = useNavigate();
+
+  // Cart Context
+  const { cartItems } = useContext(CartContext);
 
   return (
 
@@ -107,7 +113,7 @@ function Dashboard() {
               fontSize: "16px"
             }}
           >
-            🛒 Cart
+            🛒 Cart ({cartItems.length})
           </button>
 
           <button
@@ -217,6 +223,52 @@ function Dashboard() {
             maxWidth: "100%"
           }}
         />
+
+      </div>
+
+      {/* Footer */}
+
+      <div
+        style={{
+          marginTop: "60px",
+          textAlign: "center",
+          padding: "20px",
+          borderTop: "1px solid #334155"
+        }}
+      >
+
+        <h2
+          style={{
+            color: "#ffb400",
+            letterSpacing: "2px",
+            fontSize: "22px"
+          }}
+        >
+          🚀 Developed By
+        </h2>
+
+        <h1
+          style={{
+            background:
+              "linear-gradient(90deg,#ffb400,#ff5722,#ff00c8)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontSize: "40px",
+            marginTop: "10px"
+          }}
+        >
+          Madala Amarnadh
+        </h1>
+
+        <p
+          style={{
+            color: "#94a3b8",
+            marginTop: "10px",
+            fontSize: "16px"
+          }}
+        >
+          Building modern food experiences with React ⚡
+        </p>
 
       </div>
 
