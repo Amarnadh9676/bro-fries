@@ -27,13 +27,13 @@ function Dashboard() {
         Developed by Madala Amarnadh
       </h3>
 
-      <h2>Total Orders: 120</h2>
+      <h2>Total Orders: 0</h2>
 
-      <h2>Total Revenue: ₹25,000</h2>
+      <h2>Total Revenue: ₹0</h2>
 
-      <h2>Pending Orders: 15</h2>
+      <h2>Pending Orders: 0</h2>
 
-      <h2>Delivered Orders: 105</h2>
+      <h2>Delivered Orders: 0</h2>
 
       <br />
 
