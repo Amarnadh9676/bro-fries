@@ -1,7 +1,7 @@
 import "./App.css";
 
 import { useContext } from "react";
-import { CartContext } from "./context/CartContext";
+import { CartContext } from "./Context/CartContext";
 
 import burger from "./images/burger.jpg";
 import cheese from "./images/cheese.jpg";
@@ -59,7 +59,7 @@ function Menu() {
 
         {foods.map((food) => (
 
-          <div className="card">
+          <div className="card" key={food.name}>
 
             <img
               src={food.image}
