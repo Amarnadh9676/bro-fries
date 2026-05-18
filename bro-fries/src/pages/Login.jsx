@@ -25,9 +25,18 @@ function Login() {
       storedUser?.password === password
     ) {
 
+      // Save login status
+
+      localStorage.setItem(
+        "isLoggedIn",
+        "true"
+      );
+
       alert("Login Successful");
 
-      navigate("/");
+      // Open dashboard
+
+      navigate("/dashboard");
 
     } else {
 

@@ -9,9 +9,11 @@ function Auth() {
   );
 
   const isLoggedIn =
-    localStorage.getItem("isLoggedIn");
+    localStorage.getItem(
+      "isLoggedIn"
+    );
 
-  // If no account → Register
+  // No account
 
   if (!storedUser) {
 
@@ -19,15 +21,15 @@ function Auth() {
 
   }
 
-  // If account exists but not logged in
+  // Account exists but not logged in
 
-  if (!isLoggedIn) {
+  if (isLoggedIn !== "true") {
 
     return <Navigate to="/login" />;
 
   }
 
-  // If logged in
+  // Logged in
 
   return <Navigate to="/dashboard" />;
 
