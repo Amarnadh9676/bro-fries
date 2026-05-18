@@ -11,6 +11,7 @@ function Cart() {
   } = useContext(CartContext);
 
   // Total Price Calculation
+
   const total = cartItems.reduce(
     (sum, item) =>
       sum + item.price * item.quantity,
@@ -52,31 +53,58 @@ function Cart() {
             Quantity: {item.quantity}
           </h3>
 
+          {/* Quantity Buttons */}
+
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "15px",
+              marginTop: "15px"
+            }}
+          >
+
+            <button
+              onClick={() =>
+                removeFromCart(item.name)
+              }
+              style={{
+                padding: "8px 15px",
+                fontSize: "18px",
+                borderRadius: "10px",
+                border: "none",
+                cursor: "pointer"
+              }}
+            >
+              ➖
+            </button>
+
+            <h2>{item.quantity}</h2>
+
+            <button
+              onClick={() => addToCart(item)}
+              style={{
+                padding: "8px 15px",
+                fontSize: "18px",
+                borderRadius: "10px",
+                border: "none",
+                cursor: "pointer"
+              }}
+            >
+              ➕
+            </button>
+
+          </div>
+
           <h3
             style={{
-              color: "#ffb400"
+              color: "#ffb400",
+              marginTop: "20px"
             }}
           >
             Item Total:
             ₹{item.price * item.quantity}
           </h3>
-
-          <button
-            onClick={() => addToCart(item)}
-          >
-            Add
-          </button>
-
-          <button
-            onClick={() =>
-              removeFromCart(item.name)
-            }
-            style={{
-              marginLeft: "10px"
-            }}
-          >
-            Remove
-          </button>
 
         </div>
 
