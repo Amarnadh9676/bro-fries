@@ -15,6 +15,10 @@ import Address from "./pages/Address";
 import Payment from "./pages/Payment";
 import Success from "./pages/Success";
 
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Auth from "./pages/Auth";
+
 import CartProvider from "./Context/CartContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -25,17 +29,55 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
       <Routes>
 
-        <Route path="/" element={<Dashboard />} />
+        {/* Auth Route */}
 
-        <Route path="/menu" element={<Menu />} />
+        <Route path="/" element={<Auth />} />
 
-        <Route path="/cart" element={<Cart />} />
+        {/* Dashboard */}
 
-        <Route path="/address" element={<Address />} />
+        <Route
+          path="/dashboard"
+          element={<Dashboard />}
+        />
 
-        <Route path="/payment" element={<Payment />} />
+        {/* Other Pages */}
 
-        <Route path="/success" element={<Success />} />
+        <Route
+          path="/menu"
+          element={<Menu />}
+        />
+
+        <Route
+          path="/cart"
+          element={<Cart />}
+        />
+
+        <Route
+          path="/address"
+          element={<Address />}
+        />
+
+        <Route
+          path="/payment"
+          element={<Payment />}
+        />
+
+        <Route
+          path="/success"
+          element={<Success />}
+        />
+
+        {/* Login/Register */}
+
+        <Route
+          path="/login"
+          element={<Login />}
+        />
+
+        <Route
+          path="/register"
+          element={<Register />}
+        />
 
       </Routes>
 
