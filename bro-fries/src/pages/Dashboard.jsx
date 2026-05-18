@@ -69,7 +69,7 @@ function Dashboard() {
           style={{
             display: "flex",
             gap: "20px",
-            marginTop: "10px"
+            flexWrap: "wrap"
           }}
         >
 
@@ -102,6 +102,36 @@ function Dashboard() {
             }}
           >
             🛒 Cart
+          </button>
+
+          <button
+            onClick={() => navigate("/address")}
+            style={{
+              background: "#2196f3",
+              color: "white",
+              border: "none",
+              padding: "12px 25px",
+              borderRadius: "12px",
+              cursor: "pointer",
+              fontSize: "16px"
+            }}
+          >
+            🏠 Address
+          </button>
+
+          <button
+            onClick={() => navigate("/payment")}
+            style={{
+              background: "purple",
+              color: "white",
+              border: "none",
+              padding: "12px 25px",
+              borderRadius: "12px",
+              cursor: "pointer",
+              fontSize: "16px"
+            }}
+          >
+            💳 Payment
           </button>
 
         </div>
@@ -208,116 +238,6 @@ function Dashboard() {
               boxShadow: "0 0 40px rgba(255,180,0,0.3)"
             }}
           />
-
-        </div>
-
-      </div>
-
-      {/* Stats Cards */}
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          gap: "25px",
-          flexWrap: "wrap",
-          marginTop: "40px"
-        }}
-      >
-
-        <div
-          style={{
-            background: "#111827",
-            padding: "30px",
-            borderRadius: "20px",
-            width: "260px",
-            textAlign: "center",
-            boxShadow: "0 0 20px rgba(255,180,0,0.2)"
-          }}
-        >
-
-          <h1
-            style={{
-              color: "#ffb400",
-              fontSize: "50px"
-            }}
-          >
-            0
-          </h1>
-
-          <h2>Total Orders</h2>
-
-        </div>
-
-        <div
-          style={{
-            background: "#111827",
-            padding: "30px",
-            borderRadius: "20px",
-            width: "260px",
-            textAlign: "center",
-            boxShadow: "0 0 20px rgba(0,255,100,0.2)"
-          }}
-        >
-
-          <h1
-            style={{
-              color: "#00ff66",
-              fontSize: "50px"
-            }}
-          >
-            ₹0
-          </h1>
-
-          <h2>Total Revenue</h2>
-
-        </div>
-
-        <div
-          style={{
-            background: "#111827",
-            padding: "30px",
-            borderRadius: "20px",
-            width: "260px",
-            textAlign: "center",
-            boxShadow: "0 0 20px rgba(0,150,255,0.2)"
-          }}
-        >
-
-          <h1
-            style={{
-              color: "#00bfff",
-              fontSize: "50px"
-            }}
-          >
-            0
-          </h1>
-
-          <h2>Pending Orders</h2>
-
-        </div>
-
-        <div
-          style={{
-            background: "#111827",
-            padding: "30px",
-            borderRadius: "20px",
-            width: "260px",
-            textAlign: "center",
-            boxShadow: "0 0 20px rgba(255,0,100,0.2)"
-          }}
-        >
-
-          <h1
-            style={{
-              color: "#ff4da6",
-              fontSize: "50px"
-            }}
-          >
-            0
-          </h1>
-
-          <h2>Delivered Orders</h2>
 
         </div>
 
