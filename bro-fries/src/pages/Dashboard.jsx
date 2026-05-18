@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import logo from "../images/logo.png";
-import burger from "../images/burger.jpg";
+import burger from "../images/logo.png";
 
 function Dashboard() {
 
@@ -34,6 +34,8 @@ function Dashboard() {
         }}
       >
 
+        {/* Logo Section */}
+
         <div
           style={{
             display: "flex",
@@ -46,17 +48,19 @@ function Dashboard() {
             src={logo}
             alt="logo"
             style={{
-              width: "80px",
-              height: "80px",
-              borderRadius: "20px",
-              objectFit: "cover"
+              width: "90px",
+              height: "90px",
+              borderRadius: "50%",
+              objectFit: "cover",
+              border: "3px solid #ffb400",
+              boxShadow: "0 0 20px rgba(255,180,0,0.5)"
             }}
           />
 
           <h1
             style={{
               color: "#ffb400",
-              fontSize: "40px",
+              fontSize: "42px",
               margin: "0"
             }}
           >
@@ -64,6 +68,8 @@ function Dashboard() {
           </h1>
 
         </div>
+
+        {/* Navbar Buttons */}
 
         <div
           style={{
