@@ -11,11 +11,21 @@ function Dashboard() {
         backgroundColor: "#08122e",
         minHeight: "100vh",
         color: "white",
-        padding: "40px"
+        padding: "40px",
+        textAlign: "center"
       }}
     >
 
       <h1>👨‍💼 Admin Dashboard</h1>
+
+      <h3
+        style={{
+          color: "orange",
+          marginBottom: "30px"
+        }}
+      >
+        Developed by Madala Amarnadh
+      </h3>
 
       <h2>Total Orders: 120</h2>
 
