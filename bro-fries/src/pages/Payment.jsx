@@ -13,33 +13,113 @@ function Payment() {
   }
 
   return (
-    <div style={{ textAlign: "center" }}>
 
-      <h1>💳 Payment Page</h1>
+    <div
+      style={{
+        background: "#050816",
+        minHeight: "100vh",
+        color: "white",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        fontFamily: "Arial"
+      }}
+    >
 
-      <button onClick={phonepe}>
-        PhonePe
-      </button>
+      <div
+        style={{
+          background: "#111827",
+          padding: "50px",
+          borderRadius: "30px",
+          width: "400px",
+          textAlign: "center",
+          boxShadow: "0 0 30px rgba(255,180,0,0.2)"
+        }}
+      >
 
-      <br /><br />
+        <h1
+          style={{
+            color: "#ffb400",
+            marginBottom: "40px"
+          }}
+        >
+          💳 Payment Options
+        </h1>
 
-      <button onClick={gpay}>
-        Google Pay
-      </button>
+        <button
+          onClick={phonepe}
+          style={{
+            width: "100%",
+            padding: "16px",
+            marginBottom: "20px",
+            background: "#5f259f",
+            color: "white",
+            border: "none",
+            borderRadius: "14px",
+            fontSize: "18px",
+            cursor: "pointer",
+            fontWeight: "bold"
+          }}
+        >
+          PhonePe
+        </button>
 
-      <br /><br />
+        <button
+          onClick={gpay}
+          style={{
+            width: "100%",
+            padding: "16px",
+            marginBottom: "20px",
+            background: "#4285F4",
+            color: "white",
+            border: "none",
+            borderRadius: "14px",
+            fontSize: "18px",
+            cursor: "pointer",
+            fontWeight: "bold"
+          }}
+        >
+          Google Pay
+        </button>
 
-      <button onClick={paytm}>
-        Paytm
-      </button>
+        <button
+          onClick={paytm}
+          style={{
+            width: "100%",
+            padding: "16px",
+            marginBottom: "20px",
+            background: "#00b9f1",
+            color: "white",
+            border: "none",
+            borderRadius: "14px",
+            fontSize: "18px",
+            cursor: "pointer",
+            fontWeight: "bold"
+          }}
+        >
+          Paytm
+        </button>
 
-      <br /><br />
+        <button
+          style={{
+            width: "100%",
+            padding: "16px",
+            background: "#ffb400",
+            color: "black",
+            border: "none",
+            borderRadius: "14px",
+            fontSize: "18px",
+            cursor: "pointer",
+            fontWeight: "bold"
+          }}
+        >
+          Cash on Delivery
+        </button>
 
-      <button>
-        Cash on Delivery
-      </button>
+      </div>
 
     </div>
+
   );
 }
 
