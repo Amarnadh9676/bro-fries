@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "./Context/CartContext";
 
 import burger from "./images/burger.jpg";
@@ -13,6 +13,9 @@ import peri from "./images/peri.jpg";
 function Menu() {
 
   const { addToCart } = useContext(CartContext);
+
+  // Search State
+  const [search, setSearch] = useState("");
 
   const foods = [
     {
@@ -47,6 +50,13 @@ function Menu() {
     }
   ];
 
+  // Search Filter
+  const filteredFoods = foods.filter((food) =>
+    food.name
+      .toLowerCase()
+      .includes(search.toLowerCase())
+  );
+
   return (
 
     <div
@@ -64,11 +74,38 @@ function Menu() {
           textAlign: "center",
           color: "#ffb400",
           fontSize: "60px",
-          marginBottom: "50px"
+          marginBottom: "30px"
         }}
       >
         🍟 Bro Fries Menu
       </h1>
+
+      {/* Search Bar */}
+
+      <div
+        style={{
+          textAlign: "center",
+          marginBottom: "40px"
+        }}
+      >
+
+        <input
+          type="text"
+          placeholder="Search food..."
+          value={search}
+          onChange={(e) =>
+            setSearch(e.target.value)
+          }
+          style={{
+            padding: "15px",
+            width: "350px",
+            borderRadius: "12px",
+            border: "none",
+            fontSize: "18px"
+          }}
+        />
+
+      </div>
 
       <div
         style={{
@@ -79,7 +116,7 @@ function Menu() {
         }}
       >
 
-        {foods.map((food) => (
+        {filteredFoods.map((food) => (
 
           <div
             key={food.name}
