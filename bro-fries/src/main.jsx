@@ -15,7 +15,7 @@ import Address from "./pages/Address";
 import Payment from "./pages/Payment";
 import Success from "./pages/Success";
 
-import CartProvider from "./context/CartContext";
+import CartProvider from "./Context/CartContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 
