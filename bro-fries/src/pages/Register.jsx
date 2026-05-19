@@ -13,6 +13,11 @@ function Register() {
 
   const navigate = useNavigate();
 
+  // NAME STATE
+
+  const [name, setName] =
+    useState("");
+
   const [email, setEmail] =
     useState("");
 
@@ -33,6 +38,7 @@ function Register() {
   const handleRegister = async () => {
 
     if (
+      !name ||
       !email ||
       !password ||
       !confirmPassword
@@ -70,7 +76,18 @@ function Register() {
       await supabase.auth.signUp({
 
         email,
+
         password,
+
+        options: {
+
+          data: {
+
+            name: name,
+
+          },
+
+        },
 
       });
 
@@ -96,10 +113,15 @@ function Register() {
       style={{
         background:
           "linear-gradient(135deg,#050816,#0f172a)",
+
         minHeight: "100vh",
+
         display: "flex",
+
         justifyContent: "center",
+
         alignItems: "center",
+
         padding: "20px"
       }}
     >
@@ -107,10 +129,15 @@ function Register() {
       <div
         style={{
           background: "#111827",
+
           padding: "40px",
+
           borderRadius: "30px",
+
           width: "380px",
+
           color: "white",
+
           boxShadow:
             "0 0 30px rgba(255,180,0,0.3)"
         }}
@@ -121,6 +148,7 @@ function Register() {
         <div
           style={{
             textAlign: "center",
+
             marginBottom: "20px"
           }}
         >
@@ -130,11 +158,16 @@ function Register() {
             alt="logo"
             style={{
               width: "100px",
+
               height: "100px",
+
               borderRadius: "50%",
+
               border:
                 "3px solid #ffb400",
+
               objectFit: "cover",
+
               boxShadow:
                 "0 0 20px rgba(255,180,0,0.5)"
             }}
@@ -143,7 +176,9 @@ function Register() {
           <h1
             style={{
               color: "#ffb400",
+
               marginTop: "15px",
+
               fontSize: "42px"
             }}
           >
@@ -160,7 +195,19 @@ function Register() {
 
         </div>
 
-        {/* Inputs */}
+        {/* NAME INPUT */}
+
+        <input
+          type="text"
+          placeholder="Enter Name"
+          value={name}
+          onChange={(e) =>
+            setName(e.target.value)
+          }
+          style={inputStyle}
+        />
+
+        {/* EMAIL */}
 
         <input
           type="email"
@@ -172,6 +219,8 @@ function Register() {
           style={inputStyle}
         />
 
+        {/* PASSWORD */}
+
         <input
           type="password"
           placeholder="Enter Password"
@@ -181,6 +230,8 @@ function Register() {
           }
           style={inputStyle}
         />
+
+        {/* CONFIRM PASSWORD */}
 
         <input
           type="password"
@@ -236,7 +287,9 @@ function Register() {
         <p
           style={{
             textAlign: "center",
+
             marginTop: "20px",
+
             color: "#cbd5e1"
           }}
         >
@@ -246,7 +299,9 @@ function Register() {
             to="/login"
             style={{
               color: "#ffb400",
+
               textDecoration: "none",
+
               fontWeight: "bold"
             }}
           >
@@ -265,13 +320,21 @@ function Register() {
 const inputStyle = {
 
   width: "100%",
+
   padding: "14px",
+
   marginTop: "15px",
+
   borderRadius: "12px",
+
   border: "none",
+
   fontSize: "16px",
+
   background: "#1e293b",
+
   color: "white",
+
   outline: "none"
 
 };
@@ -279,14 +342,23 @@ const inputStyle = {
 const buttonStyle = {
 
   width: "100%",
+
   padding: "15px",
+
   marginTop: "25px",
+
   background: "#ffb400",
+
   border: "none",
+
   borderRadius: "12px",
+
   fontWeight: "bold",
+
   fontSize: "18px",
+
   cursor: "pointer",
+
   color: "black"
 
 };

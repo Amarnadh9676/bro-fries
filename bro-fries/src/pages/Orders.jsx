@@ -1,10 +1,36 @@
+import {
+  useState,
+  useEffect
+} from "react";
+
 function Orders() {
 
-  const orders = JSON.parse(
-    localStorage.getItem(
-      "orders"
-    )
-  ) || [];
+  // ORDERS STATE
+
+  const [orders, setOrders] =
+    useState(() => {
+
+      const savedOrders =
+        localStorage.getItem(
+          "orders"
+        );
+
+      return savedOrders
+        ? JSON.parse(savedOrders)
+        : [];
+
+    });
+
+  // SAVE ORDERS TO LOCAL STORAGE
+
+  useEffect(() => {
+
+    localStorage.setItem(
+      "orders",
+      JSON.stringify(orders)
+    );
+
+  }, [orders]);
 
   return (
 
@@ -101,12 +127,20 @@ function Orders() {
                             key={item.name}
                             style={{
                               marginBottom:
+                                "15px",
+
+                              padding: "15px",
+
+                              background:
+                                "#1e293b",
+
+                              borderRadius:
                                 "15px"
                             }}
                           >
 
                             <h3>
-                              {item.name}
+                              🍔 {item.name}
                             </h3>
 
                             <p>

@@ -16,6 +16,11 @@ import {
 
 import "react-toastify/dist/ReactToastify.css";
 
+// LOADING SPINNER
+
+import { Oval }
+from "react-loader-spinner";
+
 function Login() {
 
   const navigate = useNavigate();
@@ -26,7 +31,16 @@ function Login() {
   const [password, setPassword] =
     useState("");
 
+  // LOADING STATE
+
+  const [loading, setLoading] =
+    useState(false);
+
   const handleLogin = async () => {
+
+    // START LOADING
+
+    setLoading(true);
 
     const { error } =
       await supabase.auth.signInWithPassword({
@@ -35,6 +49,10 @@ function Login() {
         password,
 
       });
+
+    // STOP LOADING
+
+    setLoading(false);
 
     if (error) {
 
@@ -60,10 +78,15 @@ function Login() {
       style={{
         background:
           "linear-gradient(135deg,#020617,#020c2b,#000814)",
+
         minHeight: "100vh",
+
         display: "flex",
+
         justifyContent: "center",
+
         alignItems: "center",
+
         padding: "20px"
       }}
     >
@@ -188,7 +211,40 @@ function Login() {
           onClick={handleLogin}
           style={buttonStyle}
         >
-          Login →
+
+          {
+
+            loading
+
+              ? (
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent:
+                      "center"
+                  }}
+                >
+
+                  <Oval
+                    height={28}
+                    width={28}
+                    color="black"
+                    secondaryColor="black"
+                  />
+
+                </div>
+
+              )
+
+              : (
+
+                "Login →"
+
+              )
+
+          }
+
         </button>
 
         {/* Divider */}

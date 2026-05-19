@@ -1,6 +1,13 @@
 import { useNavigate } from "react-router-dom";
 
-import { useContext } from "react";
+import {
+  useContext,
+  useEffect,
+  useState
+} from "react";
+
+import { motion }
+from "framer-motion";
 
 import { CartContext } from "../Context/CartContext";
 
@@ -21,9 +28,40 @@ function Dashboard() {
 
   const navigate = useNavigate();
 
+  // USER NAME STATE
+
+  const [userName, setUserName] =
+    useState("");
+
   // Cart Context
+
   const { cartItems } =
     useContext(CartContext);
+
+  // GET USER NAME
+
+  useEffect(() => {
+
+    const getUser = async () => {
+
+      const {
+        data: { user },
+      } =
+        await supabase.auth.getUser();
+
+      if (user) {
+
+        setUserName(
+          user.user_metadata.name
+        );
+
+      }
+
+    };
+
+    getUser();
+
+  }, []);
 
   // Logout Function
 
@@ -51,7 +89,22 @@ function Dashboard() {
 
       {/* Main Container */}
 
-      <div
+      <motion.div
+
+        initial={{
+          opacity: 0,
+          y: 50
+        }}
+
+        animate={{
+          opacity: 1,
+          y: 0
+        }}
+
+        transition={{
+          duration: 1
+        }}
+
         style={{
           maxWidth: "1400px",
           margin: "auto"
@@ -60,7 +113,12 @@ function Dashboard() {
 
         {/* Navbar */}
 
-        <div
+        <motion.div
+
+          whileHover={{
+            scale: 1.01
+          }}
+
           style={{
             display: "flex",
             justifyContent: "space-between",
@@ -85,7 +143,11 @@ function Dashboard() {
             }}
           >
 
-            <img
+            <motion.img
+              whileHover={{
+                rotate: 5,
+                scale: 1.05
+              }}
               src={logo}
               alt="logo"
               style={{
@@ -136,26 +198,38 @@ function Dashboard() {
             }}
           >
 
-            {/* Welcome */}
+            {/* Dynamic Welcome */}
 
             <h3
               style={{
                 color: "#ffb400"
               }}
             >
-              Welcome Amar 👋
+              Welcome {userName} 👋
             </h3>
 
-            <button
+            <motion.button
+              whileHover={{
+                scale: 1.08
+              }}
+              whileTap={{
+                scale: 0.95
+              }}
               onClick={() =>
                 navigate("/menu")
               }
               style={menuBtn}
             >
               🍟 Menu
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
+              whileHover={{
+                scale: 1.08
+              }}
+              whileTap={{
+                scale: 0.95
+              }}
               onClick={() =>
                 navigate("/cart")
               }
@@ -164,42 +238,75 @@ function Dashboard() {
               🛒 Cart (
               {cartItems.length}
               )
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
+              whileHover={{
+                scale: 1.08
+              }}
+              whileTap={{
+                scale: 0.95
+              }}
               onClick={() =>
                 navigate("/address")
               }
               style={addressBtn}
             >
               🏠 Address
-            </button>
+            </motion.button>
 
-            <button
+            <motion.button
+              whileHover={{
+                scale: 1.08
+              }}
+              whileTap={{
+                scale: 0.95
+              }}
               onClick={() =>
                 navigate("/payment")
               }
               style={paymentBtn}
             >
               💳 Payment
-            </button>
+            </motion.button>
 
             {/* Logout */}
 
-            <button
+            <motion.button
+              whileHover={{
+                scale: 1.08
+              }}
+              whileTap={{
+                scale: 0.95
+              }}
               onClick={handleLogout}
               style={logoutBtn}
             >
               🚪 Logout
-            </button>
+            </motion.button>
 
           </div>
 
-        </div>
+        </motion.div>
 
         {/* Hero Section */}
 
-        <div
+        <motion.div
+
+          initial={{
+            opacity: 0,
+            x: -100
+          }}
+
+          animate={{
+            opacity: 1,
+            x: 0
+          }}
+
+          transition={{
+            duration: 1
+          }}
+
           style={{
             display: "flex",
             justifyContent:
@@ -259,10 +366,20 @@ function Dashboard() {
               🍔🍟🥤
             </p>
 
-            <button
+            <motion.button
+
+              whileHover={{
+                scale: 1.08
+              }}
+
+              whileTap={{
+                scale: 0.95
+              }}
+
               onClick={() =>
                 navigate("/menu")
               }
+
               style={{
                 background: "#ffb400",
                 color: "black",
@@ -279,15 +396,27 @@ function Dashboard() {
               }}
             >
               🍟 Order Now
-            </button>
+            </motion.button>
 
           </div>
 
           {/* Hero Image */}
 
-          <img
+          <motion.img
+
+            animate={{
+              y: [0, -15, 0]
+            }}
+
+            transition={{
+              duration: 3,
+              repeat: Infinity
+            }}
+
             src={burger}
+
             alt="burger"
+
             style={{
               width: "500px",
               borderRadius: "30px",
@@ -297,11 +426,21 @@ function Dashboard() {
             }}
           />
 
-        </div>
+        </motion.div>
 
         {/* Offer Banner */}
 
-        <div
+        <motion.div
+
+          animate={{
+            scale: [1, 1.02, 1]
+          }}
+
+          transition={{
+            duration: 2,
+            repeat: Infinity
+          }}
+
           style={{
             marginTop: "40px",
             background:
@@ -325,7 +464,7 @@ function Dashboard() {
         >
           🔥 Flat 50% OFF on
           Burgers This Weekend 🍔
-        </div>
+        </motion.div>
 
         {/* Footer */}
 
@@ -392,7 +531,7 @@ function Dashboard() {
 
         </div>
 
-      </div>
+      </motion.div>
 
       <ToastContainer />
 

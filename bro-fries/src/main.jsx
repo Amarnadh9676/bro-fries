@@ -1,4 +1,5 @@
 import React from "react";
+
 import ReactDOM from "react-dom/client";
 
 import {
@@ -25,6 +26,10 @@ import Auth from "./pages/Auth";
 
 import CartProvider from "./Context/CartContext";
 
+// IMPORT PROTECTED ROUTE
+
+import ProtectedRoute from "./components/ProtectedRoute";
+
 ReactDOM.createRoot(
   document.getElementById("root")
 ).render(
@@ -42,43 +47,81 @@ ReactDOM.createRoot(
           element={<Auth />}
         />
 
-        {/* Dashboard */}
+        {/* Protected Dashboard */}
 
         <Route
           path="/dashboard"
-          element={<Dashboard />}
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
         />
 
-        {/* Other Pages */}
+        {/* Protected Menu */}
 
         <Route
           path="/menu"
-          element={<Menu />}
+          element={
+            <ProtectedRoute>
+              <Menu />
+            </ProtectedRoute>
+          }
         />
+
+        {/* Protected Cart */}
 
         <Route
           path="/cart"
-          element={<Cart />}
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
         />
+
+        {/* Protected Address */}
 
         <Route
           path="/address"
-          element={<Address />}
+          element={
+            <ProtectedRoute>
+              <Address />
+            </ProtectedRoute>
+          }
         />
+
+        {/* Protected Payment */}
 
         <Route
           path="/payment"
-          element={<Payment />}
+          element={
+            <ProtectedRoute>
+              <Payment />
+            </ProtectedRoute>
+          }
         />
+
+        {/* Protected Orders */}
 
         <Route
           path="/orders"
-          element={<Orders />}
+          element={
+            <ProtectedRoute>
+              <Orders />
+            </ProtectedRoute>
+          }
         />
+
+        {/* Protected Success */}
 
         <Route
           path="/success"
-          element={<Success />}
+          element={
+            <ProtectedRoute>
+              <Success />
+            </ProtectedRoute>
+          }
         />
 
         {/* Login/Register */}

@@ -1,6 +1,9 @@
 import "./App.css";
 
 import { useContext, useState } from "react";
+
+import { motion } from "framer-motion";
+
 import { CartContext } from "./Context/CartContext";
 
 import burger from "./images/burger.jpg";
@@ -12,76 +15,107 @@ import peri from "./images/peri.jpg";
 
 function Menu() {
 
-  const { addToCart } = useContext(CartContext);
+  const { addToCart } =
+    useContext(CartContext);
 
   // Search State
-  const [search, setSearch] = useState("");
+
+  const [search, setSearch] =
+    useState("");
 
   // Category State
-  const [category, setCategory] = useState("All");
+
+  const [category, setCategory] =
+    useState("All");
 
   const foods = [
+
     {
       name: "Veg Burger",
       price: 119,
-      image: burger
+      image: burger,
+      rating: "4.8 ⭐"
     },
+
     {
       name: "Cheese Fries",
       price: 149,
-      image: cheese
+      image: cheese,
+      rating: "4.7 ⭐"
     },
+
     {
       name: "Cool Drinks",
       price: 49,
-      image: drink
+      image: drink,
+      rating: "4.5 ⭐"
     },
+
     {
       name: "French Fries",
       price: 99,
-      image: french
+      image: french,
+      rating: "4.9 ⭐"
     },
+
     {
       name: "Mayo Fries",
       price: 159,
-      image: mayo
+      image: mayo,
+      rating: "4.6 ⭐"
     },
+
     {
       name: "Peri Peri Fries",
       price: 129,
-      image: peri
+      image: peri,
+      rating: "5.0 ⭐"
     }
+
   ];
 
   // Search + Category Filter
 
-  const filteredFoods = foods.filter((food) => {
+  const filteredFoods =
+    foods.filter((food) => {
 
-    const matchesSearch =
-      food.name
-        .toLowerCase()
-        .includes(search.toLowerCase());
+      const matchesSearch =
 
-    const matchesCategory =
+        food.name
+          .toLowerCase()
+          .includes(
+            search.toLowerCase()
+          );
 
-      category === "All"
+      const matchesCategory =
 
-        ? true
+        category === "All"
 
-        : category === "Burger"
-        ? food.name.includes("Burger")
+          ? true
 
-        : category === "Fries"
-        ? food.name.includes("Fries")
+          : category === "Burger"
+          ? food.name.includes(
+              "Burger"
+            )
 
-        : category === "Drinks"
-        ? food.name.includes("Drinks")
+          : category === "Fries"
+          ? food.name.includes(
+              "Fries"
+            )
 
-        : true;
+          : category === "Drinks"
+          ? food.name.includes(
+              "Drinks"
+            )
 
-    return matchesSearch && matchesCategory;
+          : true;
 
-  });
+      return (
+        matchesSearch &&
+        matchesCategory
+      );
+
+    });
 
   return (
 
@@ -95,7 +129,24 @@ function Menu() {
       }}
     >
 
-      <h1
+      {/* Heading */}
+
+      <motion.h1
+
+        initial={{
+          opacity: 0,
+          y: -50
+        }}
+
+        animate={{
+          opacity: 1,
+          y: 0
+        }}
+
+        transition={{
+          duration: 1
+        }}
+
         style={{
           textAlign: "center",
           color: "#ffb400",
@@ -104,7 +155,7 @@ function Menu() {
         }}
       >
         🍟 Bro Fries Menu
-      </h1>
+      </motion.h1>
 
       {/* Search Bar */}
 
@@ -125,9 +176,14 @@ function Menu() {
           style={{
             padding: "15px",
             width: "350px",
-            borderRadius: "12px",
+            borderRadius: "14px",
             border: "none",
-            fontSize: "18px"
+            fontSize: "18px",
+            background: "#111827",
+            color: "white",
+            outline: "none",
+            boxShadow:
+              "0 0 15px rgba(255,180,0,0.2)"
           }}
         />
 
@@ -145,21 +201,59 @@ function Menu() {
         }}
       >
 
-        <button onClick={() => setCategory("All")}>
-          All
-        </button>
+        {[
+          "All",
+          "Burger",
+          "Fries",
+          "Drinks"
+        ].map((item) => (
 
-        <button onClick={() => setCategory("Burger")}>
-          Burgers
-        </button>
+          <motion.button
 
-        <button onClick={() => setCategory("Fries")}>
-          Fries
-        </button>
+            whileHover={{
+              scale: 1.08
+            }}
 
-        <button onClick={() => setCategory("Drinks")}>
-          Drinks
-        </button>
+            whileTap={{
+              scale: 0.95
+            }}
+
+            key={item}
+
+            onClick={() =>
+              setCategory(item)
+            }
+
+            style={{
+              background:
+                category === item
+                  ? "#ffb400"
+                  : "#111827",
+
+              color:
+                category === item
+                  ? "black"
+                  : "white",
+
+              border:
+                "2px solid #ffb400",
+
+              padding:
+                "12px 24px",
+
+              borderRadius: "14px",
+
+              fontWeight: "bold",
+
+              cursor: "pointer",
+
+              fontSize: "16px"
+            }}
+          >
+            {item}
+          </motion.button>
+
+        ))}
 
       </div>
 
@@ -176,27 +270,53 @@ function Menu() {
 
         {filteredFoods.map((food) => (
 
-          <div
+          <motion.div
+
             key={food.name}
+
+            whileHover={{
+              scale: 1.05,
+              y: -10
+            }}
+
+            transition={{
+              duration: 0.3
+            }}
+
             style={{
               background: "#111827",
               borderRadius: "25px",
               overflow: "hidden",
               width: "320px",
-              boxShadow: "0 0 25px rgba(255,180,0,0.15)",
-              transition: "0.3s"
+              boxShadow:
+                "0 0 25px rgba(255,180,0,0.15)"
             }}
           >
 
-            <img
+            {/* Food Image */}
+
+            <motion.img
+
+              whileHover={{
+                scale: 1.1
+              }}
+
+              transition={{
+                duration: 0.4
+              }}
+
               src={food.image}
+
               alt={food.name}
+
               style={{
                 width: "100%",
                 height: "240px",
                 objectFit: "cover"
               }}
             />
+
+            {/* Card Content */}
 
             <div
               style={{
@@ -213,17 +333,46 @@ function Menu() {
                 {food.name}
               </h2>
 
-              <h3
+              {/* Rating */}
+
+              <p
                 style={{
                   color: "#ffb400",
-                  marginBottom: "20px"
+                  marginBottom: "10px",
+                  fontSize: "18px"
+                }}
+              >
+                {food.rating}
+              </p>
+
+              {/* Price */}
+
+              <h3
+                style={{
+                  color: "#22c55e",
+                  marginBottom: "20px",
+                  fontSize: "28px"
                 }}
               >
                 ₹{food.price}
               </h3>
 
-              <button
-                onClick={() => addToCart(food)}
+              {/* Add To Cart */}
+
+              <motion.button
+
+                whileHover={{
+                  scale: 1.05
+                }}
+
+                whileTap={{
+                  scale: 0.9
+                }}
+
+                onClick={() =>
+                  addToCart(food)
+                }
+
                 style={{
                   background: "#ffb400",
                   color: "black",
@@ -233,15 +382,17 @@ function Menu() {
                   borderRadius: "14px",
                   fontSize: "18px",
                   fontWeight: "bold",
-                  cursor: "pointer"
+                  cursor: "pointer",
+                  boxShadow:
+                    "0 0 15px rgba(255,180,0,0.3)"
                 }}
               >
                 🛒 Add To Cart
-              </button>
+              </motion.button>
 
             </div>
 
-          </div>
+          </motion.div>
 
         ))}
 
