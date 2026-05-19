@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { CartContext } from "../Context/CartContext";
 
@@ -10,13 +10,48 @@ function Cart() {
     removeFromCart
   } = useContext(CartContext);
 
-  // Total Price Calculation
+  // Coupon States
+
+  const [coupon, setCoupon] =
+    useState("");
+
+  const [discount, setDiscount] =
+    useState(0);
+
+  // Total Price
 
   const total = cartItems.reduce(
     (sum, item) =>
       sum + item.price * item.quantity,
     0
   );
+
+  // Final Price
+
+  const finalTotal =
+    total - discount;
+
+  // Apply Coupon
+
+  const applyCoupon = () => {
+
+    if (coupon === "BRO50") {
+
+      setDiscount(total * 0.1);
+
+      alert(
+        "Coupon Applied 🎉"
+      );
+
+    } else {
+
+      alert(
+        "Invalid Coupon ❌"
+      );
+
+    }
+
+  };
 
   return (
 
@@ -110,6 +145,61 @@ function Cart() {
 
       ))}
 
+      {/* Coupon Section */}
+
+      <div
+        style={{
+          marginTop: "30px",
+          background: "#111827",
+          padding: "25px",
+          borderRadius: "20px"
+        }}
+      >
+
+        <h2
+          style={{
+            color: "#ffb400"
+          }}
+        >
+          🎟 Apply Coupon
+        </h2>
+
+        <input
+          type="text"
+          placeholder="Enter Coupon"
+          value={coupon}
+          onChange={(e) =>
+            setCoupon(e.target.value)
+          }
+          style={{
+            width: "100%",
+            padding: "14px",
+            marginTop: "15px",
+            borderRadius: "12px",
+            border: "none",
+            fontSize: "16px"
+          }}
+        />
+
+        <button
+          onClick={applyCoupon}
+          style={{
+            marginTop: "20px",
+            background: "#ffb400",
+            color: "black",
+            border: "none",
+            padding: "14px 25px",
+            borderRadius: "12px",
+            fontWeight: "bold",
+            cursor: "pointer",
+            fontSize: "16px"
+          }}
+        >
+          Apply Coupon
+        </button>
+
+      </div>
+
       {/* Final Total */}
 
       <div
@@ -122,12 +212,27 @@ function Cart() {
         }}
       >
 
+        <h2>
+          Original Total:
+          ₹{total}
+        </h2>
+
+        <h2
+          style={{
+            color: "#22c55e"
+          }}
+        >
+          Discount:
+          ₹{discount}
+        </h2>
+
         <h1
           style={{
             color: "#ffb400"
           }}
         >
-          Total: ₹{total}
+          Final Total:
+          ₹{finalTotal}
         </h1>
 
       </div>

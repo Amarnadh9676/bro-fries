@@ -15,6 +15,8 @@ import Address from "./pages/Address";
 import Payment from "./pages/Payment";
 import Success from "./pages/Success";
 
+import Orders from "./pages/Orders";
+
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -67,6 +69,11 @@ ReactDOM.createRoot(
         <Route
           path="/payment"
           element={<Payment />}
+        />
+
+        <Route
+          path="/orders"
+          element={<Orders />}
         />
 
         <Route
