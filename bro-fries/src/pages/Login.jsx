@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import {
+  useNavigate,
+  Link
+} from "react-router-dom";
+
+import logo from "../images/logo.png";
 
 function Login() {
 
@@ -25,8 +30,6 @@ function Login() {
       storedUser?.password === password
     ) {
 
-      // Save login status
-
       localStorage.setItem(
         "isLoggedIn",
         "true"
@@ -34,13 +37,13 @@ function Login() {
 
       alert("Login Successful");
 
-      // Open dashboard
-
       navigate("/dashboard");
 
     } else {
 
-      alert("Invalid Email or Password");
+      alert(
+        "Invalid Email or Password"
+      );
 
     }
 
@@ -50,11 +53,13 @@ function Login() {
 
     <div
       style={{
-        background: "#050816",
+        background:
+          "linear-gradient(135deg,#050816,#0f172a)",
         minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        padding: "20px"
       }}
     >
 
@@ -62,20 +67,59 @@ function Login() {
         style={{
           background: "#111827",
           padding: "40px",
-          borderRadius: "20px",
-          width: "350px",
-          color: "white"
+          borderRadius: "30px",
+          width: "380px",
+          color: "white",
+          boxShadow:
+            "0 0 30px rgba(255,180,0,0.3)"
         }}
       >
 
-        <h1
+        {/* Logo */}
+
+        <div
           style={{
             textAlign: "center",
-            color: "#ffb400"
+            marginBottom: "20px"
           }}
         >
-          Login
-        </h1>
+
+          <img
+            src={logo}
+            alt="logo"
+            style={{
+              width: "100px",
+              height: "100px",
+              borderRadius: "50%",
+              border:
+                "3px solid #ffb400",
+              objectFit: "cover",
+              boxShadow:
+                "0 0 20px rgba(255,180,0,0.5)"
+            }}
+          />
+
+          <h1
+            style={{
+              color: "#ffb400",
+              marginTop: "15px",
+              fontSize: "42px"
+            }}
+          >
+            Bro Fries 🍟
+          </h1>
+
+          <p
+            style={{
+              color: "#94a3b8"
+            }}
+          >
+            Login to continue
+          </p>
+
+        </div>
+
+        {/* Inputs */}
 
         <input
           type="email"
@@ -97,12 +141,38 @@ function Login() {
           style={inputStyle}
         />
 
+        {/* Button */}
+
         <button
           onClick={handleLogin}
           style={buttonStyle}
         >
           Login
         </button>
+
+        {/* Register Link */}
+
+        <p
+          style={{
+            textAlign: "center",
+            marginTop: "20px",
+            color: "#cbd5e1"
+          }}
+        >
+          Don't have an account?{" "}
+
+          <Link
+            to="/register"
+            style={{
+              color: "#ffb400",
+              textDecoration: "none",
+              fontWeight: "bold"
+            }}
+          >
+            Register
+          </Link>
+
+        </p>
 
       </div>
 
@@ -112,24 +182,32 @@ function Login() {
 }
 
 const inputStyle = {
+
   width: "100%",
-  padding: "12px",
+  padding: "14px",
   marginTop: "15px",
-  borderRadius: "10px",
+  borderRadius: "12px",
   border: "none",
-  fontSize: "16px"
+  fontSize: "16px",
+  background: "#1e293b",
+  color: "white",
+  outline: "none"
+
 };
 
 const buttonStyle = {
+
   width: "100%",
-  padding: "14px",
-  marginTop: "20px",
+  padding: "15px",
+  marginTop: "25px",
   background: "#ffb400",
   border: "none",
-  borderRadius: "10px",
+  borderRadius: "12px",
   fontWeight: "bold",
   fontSize: "18px",
-  cursor: "pointer"
+  cursor: "pointer",
+  color: "black"
+
 };
 
 export default Login;

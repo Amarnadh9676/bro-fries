@@ -146,6 +146,31 @@ function Dashboard() {
             💳 Payment
           </button>
 
+          {/* Logout Button */}
+
+          <button
+            onClick={() => {
+
+              localStorage.removeItem(
+                "isLoggedIn"
+              );
+
+              navigate("/login");
+
+            }}
+            style={{
+              background: "red",
+              color: "white",
+              border: "none",
+              padding: "12px 25px",
+              borderRadius: "12px",
+              cursor: "pointer",
+              fontSize: "16px"
+            }}
+          >
+            🚪 Logout
+          </button>
+
         </div>
 
       </div>

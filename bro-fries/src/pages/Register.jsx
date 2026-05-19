@@ -1,22 +1,32 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
+import {
+  useNavigate,
+  Link
+} from "react-router-dom";
+
+import logo from "../images/logo.png";
 
 function Register() {
 
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] =
+    useState("");
+
   const [password, setPassword] =
     useState("");
 
-  const [confirmPassword,
-    setConfirmPassword] =
-    useState("");
+  const [
+    confirmPassword,
+    setConfirmPassword
+  ] = useState("");
 
   const [captcha, setCaptcha] =
     useState("");
 
-  const generatedCaptcha = "BRO123";
+  const generatedCaptcha =
+    "BRO123";
 
   const handleRegister = () => {
 
@@ -25,18 +35,31 @@ function Register() {
       !password ||
       !confirmPassword
     ) {
+
       alert("Fill all fields");
       return;
+
     }
 
-    if (password !== confirmPassword) {
-      alert("Passwords not matching");
+    if (
+      password !== confirmPassword
+    ) {
+
+      alert(
+        "Passwords not matching"
+      );
+
       return;
+
     }
 
-    if (captcha !== generatedCaptcha) {
+    if (
+      captcha !== generatedCaptcha
+    ) {
+
       alert("Wrong captcha");
       return;
+
     }
 
     const user = {
@@ -49,20 +72,25 @@ function Register() {
       JSON.stringify(user)
     );
 
-    alert("Registered Successfully");
+    alert(
+      "Registered Successfully"
+    );
 
     navigate("/login");
+
   };
 
   return (
 
     <div
       style={{
-        background: "#050816",
+        background:
+          "linear-gradient(135deg,#050816,#0f172a)",
         minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        padding: "20px"
       }}
     >
 
@@ -70,20 +98,59 @@ function Register() {
         style={{
           background: "#111827",
           padding: "40px",
-          borderRadius: "20px",
-          width: "350px",
-          color: "white"
+          borderRadius: "30px",
+          width: "380px",
+          color: "white",
+          boxShadow:
+            "0 0 30px rgba(255,180,0,0.3)"
         }}
       >
 
-        <h1
+        {/* Logo */}
+
+        <div
           style={{
             textAlign: "center",
-            color: "#ffb400"
+            marginBottom: "20px"
           }}
         >
-          Register
-        </h1>
+
+          <img
+            src={logo}
+            alt="logo"
+            style={{
+              width: "100px",
+              height: "100px",
+              borderRadius: "50%",
+              border:
+                "3px solid #ffb400",
+              objectFit: "cover",
+              boxShadow:
+                "0 0 20px rgba(255,180,0,0.5)"
+            }}
+          />
+
+          <h1
+            style={{
+              color: "#ffb400",
+              marginTop: "15px",
+              fontSize: "42px"
+            }}
+          >
+            Bro Fries 🍟
+          </h1>
+
+          <p
+            style={{
+              color: "#94a3b8"
+            }}
+          >
+            Create your account
+          </p>
+
+        </div>
+
+        {/* Inputs */}
 
         <input
           type="email"
@@ -110,12 +177,20 @@ function Register() {
           placeholder="Confirm Password"
           value={confirmPassword}
           onChange={(e) =>
-            setConfirmPassword(e.target.value)
+            setConfirmPassword(
+              e.target.value
+            )
           }
           style={inputStyle}
         />
 
-        <h3>
+        {/* Captcha */}
+
+        <h3
+          style={{
+            marginTop: "20px"
+          }}
+        >
           Captcha:
           <span
             style={{
@@ -137,12 +212,38 @@ function Register() {
           style={inputStyle}
         />
 
+        {/* Button */}
+
         <button
           onClick={handleRegister}
           style={buttonStyle}
         >
           Register
         </button>
+
+        {/* Login Link */}
+
+        <p
+          style={{
+            textAlign: "center",
+            marginTop: "20px",
+            color: "#cbd5e1"
+          }}
+        >
+          Already have an account?{" "}
+
+          <Link
+            to="/login"
+            style={{
+              color: "#ffb400",
+              textDecoration: "none",
+              fontWeight: "bold"
+            }}
+          >
+            Login
+          </Link>
+
+        </p>
 
       </div>
 
@@ -152,24 +253,32 @@ function Register() {
 }
 
 const inputStyle = {
+
   width: "100%",
-  padding: "12px",
+  padding: "14px",
   marginTop: "15px",
-  borderRadius: "10px",
+  borderRadius: "12px",
   border: "none",
-  fontSize: "16px"
+  fontSize: "16px",
+  background: "#1e293b",
+  color: "white",
+  outline: "none"
+
 };
 
 const buttonStyle = {
+
   width: "100%",
-  padding: "14px",
-  marginTop: "20px",
+  padding: "15px",
+  marginTop: "25px",
   background: "#ffb400",
   border: "none",
-  borderRadius: "10px",
+  borderRadius: "12px",
   fontWeight: "bold",
   fontSize: "18px",
-  cursor: "pointer"
+  cursor: "pointer",
+  color: "black"
+
 };
 
 export default Register;
