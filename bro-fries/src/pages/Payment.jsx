@@ -22,7 +22,7 @@ function Payment() {
   function phonepe() {
 
     const upiLink =
-      `phonepe://pay?pa=madalaamar29@oksbi&pn=BroFries&am=${total}&cu=INR`;
+      `phonepe://pay?pa=9676532571-5@ybl&pn=BroFries&am=${total}&cu=INR`;
 
     window.location.href =
       upiLink;
@@ -34,7 +34,7 @@ function Payment() {
   function gpay() {
 
     const upiLink =
-      `tez://upi/pay?pa=madalaamar29@oksbi&pn=BroFries&am=${total}&cu=INR`;
+      `tez://upi/pay?pa=9676532571-5@ybl&pn=BroFries&am=${total}&cu=INR`;
 
     window.location.href =
       upiLink;
@@ -46,7 +46,7 @@ function Payment() {
   function paytm() {
 
     const upiLink =
-      `paytmmp://pay?pa=madalaamar29@oksbi&pn=BroFries&am=${total}&cu=INR`;
+      `paytmmp://pay?pa=9676532571-5@ybl&pn=BroFries&am=${total}&cu=INR`;
 
     window.location.href =
       upiLink;
