@@ -17,11 +17,15 @@ import Success from "./pages/Success";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
+
 import Auth from "./pages/Auth";
 
 import CartProvider from "./Context/CartContext";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(
+  document.getElementById("root")
+).render(
 
   <CartProvider>
 
@@ -31,7 +35,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
         {/* Auth Route */}
 
-        <Route path="/" element={<Auth />} />
+        <Route
+          path="/"
+          element={<Auth />}
+        />
 
         {/* Dashboard */}
 
@@ -77,6 +84,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route
           path="/register"
           element={<Register />}
+        />
+
+        {/* Forgot Password */}
+
+        <Route
+          path="/forgotpassword"
+          element={<ForgotPassword />}
         />
 
       </Routes>

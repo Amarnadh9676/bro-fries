@@ -54,7 +54,7 @@ function Login() {
     <div
       style={{
         background:
-          "linear-gradient(135deg,#050816,#0f172a)",
+          "linear-gradient(135deg,#020617,#020c2b,#000814)",
         minHeight: "100vh",
         display: "flex",
         justifyContent: "center",
@@ -65,13 +65,22 @@ function Login() {
 
       <div
         style={{
-          background: "#111827",
-          padding: "40px",
-          borderRadius: "30px",
-          width: "380px",
-          color: "white",
+          background:
+            "rgba(15,23,42,0.95)",
+
+          width: "420px",
+
+          padding: "45px",
+
+          borderRadius: "35px",
+
           boxShadow:
-            "0 0 30px rgba(255,180,0,0.3)"
+            "0 0 40px rgba(255,180,0,0.35)",
+
+          border:
+            "2px solid rgba(255,180,0,0.4)",
+
+          color: "white"
         }}
       >
 
@@ -79,8 +88,7 @@ function Login() {
 
         <div
           style={{
-            textAlign: "center",
-            marginBottom: "20px"
+            textAlign: "center"
           }}
         >
 
@@ -88,22 +96,24 @@ function Login() {
             src={logo}
             alt="logo"
             style={{
-              width: "100px",
-              height: "100px",
+              width: "120px",
+              height: "120px",
               borderRadius: "50%",
               border:
-                "3px solid #ffb400",
+                "4px solid #ffb400",
               objectFit: "cover",
               boxShadow:
-                "0 0 20px rgba(255,180,0,0.5)"
+                "0 0 30px rgba(255,180,0,0.6)"
             }}
           />
 
           <h1
             style={{
               color: "#ffb400",
-              marginTop: "15px",
-              fontSize: "42px"
+              fontSize: "64px",
+              marginTop: "20px",
+              marginBottom: "10px",
+              fontWeight: "bold"
             }}
           >
             Bro Fries 🍟
@@ -111,7 +121,8 @@ function Login() {
 
           <p
             style={{
-              color: "#94a3b8"
+              color: "#cbd5e1",
+              fontSize: "22px"
             }}
           >
             Login to continue
@@ -119,7 +130,7 @@ function Login() {
 
         </div>
 
-        {/* Inputs */}
+        {/* Email */}
 
         <input
           type="email"
@@ -131,6 +142,8 @@ function Login() {
           style={inputStyle}
         />
 
+        {/* Password */}
+
         <input
           type="password"
           placeholder="Enter Password"
@@ -141,25 +154,86 @@ function Login() {
           style={inputStyle}
         />
 
-        {/* Button */}
+        {/* Forgot Password */}
+
+        <div
+          style={{
+            textAlign: "right",
+            marginTop: "15px"
+          }}
+        >
+
+          <Link
+            to="/forgotpassword"
+            style={{
+              color: "#ffb400",
+              textDecoration: "none",
+              fontWeight: "bold",
+              fontSize: "18px"
+            }}
+          >
+            Forgot Password?
+          </Link>
+
+        </div>
+
+        {/* Login Button */}
 
         <button
           onClick={handleLogin}
           style={buttonStyle}
         >
-          Login
+          Login →
         </button>
 
-        {/* Register Link */}
+        {/* Divider */}
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginTop: "30px",
+            marginBottom: "20px"
+          }}
+        >
+
+          <div
+            style={{
+              flex: 1,
+              height: "1px",
+              background: "#475569"
+            }}
+          />
+
+          <span
+            style={{
+              margin: "0 15px",
+              color: "#94a3b8"
+            }}
+          >
+            OR
+          </span>
+
+          <div
+            style={{
+              flex: 1,
+              height: "1px",
+              background: "#475569"
+            }}
+          />
+
+        </div>
+
+        {/* Register */}
 
         <p
           style={{
             textAlign: "center",
-            marginTop: "20px",
-            color: "#cbd5e1"
+            color: "#cbd5e1",
+            fontSize: "20px"
           }}
         >
-          Don't have an account?{" "}
+          Don’t have an account?{" "}
 
           <Link
             to="/register"
@@ -184,13 +258,23 @@ function Login() {
 const inputStyle = {
 
   width: "100%",
-  padding: "14px",
-  marginTop: "15px",
-  borderRadius: "12px",
-  border: "none",
-  fontSize: "16px",
-  background: "#1e293b",
+
+  padding: "18px",
+
+  marginTop: "22px",
+
+  borderRadius: "18px",
+
+  border:
+    "1px solid rgba(255,255,255,0.1)",
+
+  fontSize: "18px",
+
+  background:
+    "rgba(30,41,59,0.9)",
+
   color: "white",
+
   outline: "none"
 
 };
@@ -198,15 +282,27 @@ const inputStyle = {
 const buttonStyle = {
 
   width: "100%",
-  padding: "15px",
-  marginTop: "25px",
+
+  padding: "18px",
+
+  marginTop: "30px",
+
   background: "#ffb400",
+
   border: "none",
-  borderRadius: "12px",
+
+  borderRadius: "18px",
+
   fontWeight: "bold",
-  fontSize: "18px",
+
+  fontSize: "24px",
+
   cursor: "pointer",
-  color: "black"
+
+  color: "black",
+
+  boxShadow:
+    "0 0 20px rgba(255,180,0,0.5)"
 
 };
 
