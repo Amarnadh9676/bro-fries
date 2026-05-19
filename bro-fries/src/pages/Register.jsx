@@ -7,6 +7,8 @@ import {
 
 import logo from "../images/logo.png";
 
+import { supabase } from "../supabase";
+
 function Register() {
 
   const navigate = useNavigate();
@@ -28,7 +30,7 @@ function Register() {
   const generatedCaptcha =
     "BRO123";
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
 
     if (
       !email ||
@@ -62,21 +64,29 @@ function Register() {
 
     }
 
-    const user = {
-      email,
-      password
-    };
+    // SUPABASE SIGNUP
 
-    localStorage.setItem(
-      "brofriesUser",
-      JSON.stringify(user)
-    );
+    const { error } =
+      await supabase.auth.signUp({
 
-    alert(
-      "Registered Successfully"
-    );
+        email,
+        password,
 
-    navigate("/login");
+      });
+
+    if (error) {
+
+      alert(error.message);
+
+    } else {
+
+      alert(
+        "Registered Successfully"
+      );
+
+      navigate("/login");
+
+    }
 
   };
 

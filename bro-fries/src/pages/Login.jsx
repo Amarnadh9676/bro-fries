@@ -7,6 +7,8 @@ import {
 
 import logo from "../images/logo.png";
 
+import { supabase } from "../supabase";
+
 function Login() {
 
   const navigate = useNavigate();
@@ -17,33 +19,27 @@ function Login() {
   const [password, setPassword] =
     useState("");
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
 
-    const storedUser = JSON.parse(
-      localStorage.getItem(
-        "brofriesUser"
-      )
-    );
+    const { error } =
+      await supabase.auth.signInWithPassword({
 
-    if (
-      storedUser?.email === email &&
-      storedUser?.password === password
-    ) {
+        email,
+        password,
 
-      localStorage.setItem(
-        "isLoggedIn",
-        "true"
-      );
+      });
 
-      alert("Login Successful");
-
-      navigate("/dashboard");
-
-    } else {
+    if (error) {
 
       alert(
         "Invalid Email or Password"
       );
+
+    } else {
+
+      alert("Login Successful");
+
+      navigate("/dashboard");
 
     }
 
