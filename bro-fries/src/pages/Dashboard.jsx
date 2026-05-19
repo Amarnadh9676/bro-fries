@@ -1,17 +1,41 @@
 import { useNavigate } from "react-router-dom";
 
 import { useContext } from "react";
+
 import { CartContext } from "../Context/CartContext";
 
+import { supabase } from "../supabase";
+
+import {
+  ToastContainer,
+  toast
+} from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
 import logo from "../images/logo.png";
-import burger from "../images/logo.png";
+
+import burger from "../images/burger.png";
 
 function Dashboard() {
 
   const navigate = useNavigate();
 
   // Cart Context
-  const { cartItems } = useContext(CartContext);
+  const { cartItems } =
+    useContext(CartContext);
+
+  // Logout Function
+
+  const handleLogout = async () => {
+
+    await supabase.auth.signOut();
+
+    toast.success("Logged Out");
+
+    navigate("/login");
+
+  };
 
   return (
 
@@ -25,281 +49,463 @@ function Dashboard() {
       }}
     >
 
-      {/* Navbar */}
+      {/* Main Container */}
 
       <div
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          background: "#0f172a",
-          padding: "15px 30px",
-          borderRadius: "20px",
-          marginBottom: "30px",
-          flexWrap: "wrap"
+          maxWidth: "1400px",
+          margin: "auto"
         }}
       >
 
-        {/* Logo Section */}
+        {/* Navbar */}
 
         <div
           style={{
             display: "flex",
+            justifyContent: "space-between",
             alignItems: "center",
-            gap: "15px"
+            background: "#0f172a",
+            padding: "15px 30px",
+            borderRadius: "20px",
+            marginBottom: "30px",
+            flexWrap: "wrap",
+            boxShadow:
+              "0 0 20px rgba(255,180,0,0.15)"
           }}
         >
 
-          <img
-            src={logo}
-            alt="logo"
-            style={{
-              width: "90px",
-              height: "90px",
-              borderRadius: "50%",
-              objectFit: "cover",
-              border: "3px solid #ffb400",
-              boxShadow: "0 0 20px rgba(255,180,0,0.5)"
-            }}
-          />
+          {/* Logo Section */}
 
-          <h1
+          <div
             style={{
-              color: "#ffb400",
-              fontSize: "42px",
-              margin: "0"
+              display: "flex",
+              alignItems: "center",
+              gap: "15px"
             }}
           >
-            Bro Fries 🔥
-          </h1>
 
-        </div>
+            <img
+              src={logo}
+              alt="logo"
+              style={{
+                width: "90px",
+                height: "90px",
+                borderRadius: "50%",
+                objectFit: "cover",
+                border:
+                  "3px solid #ffb400",
+                boxShadow:
+                  "0 0 20px rgba(255,180,0,0.5)"
+              }}
+            />
 
-        {/* Navbar Buttons */}
+            <div>
 
-        <div
-          style={{
-            display: "flex",
-            gap: "20px",
-            flexWrap: "wrap"
-          }}
-        >
+              <h1
+                style={{
+                  color: "#ffb400",
+                  fontSize: "42px",
+                  margin: "0"
+                }}
+              >
+                Bro Fries 🔥
+              </h1>
 
-          <button
-            onClick={() => navigate("/menu")}
+              <p
+                style={{
+                  color: "#cbd5e1",
+                  marginTop: "5px"
+                }}
+              >
+                Fastest Food Delivery 🍟
+              </p>
+
+            </div>
+
+          </div>
+
+          {/* Navbar Buttons */}
+
+          <div
             style={{
-              background: "#ffb400",
-              color: "black",
-              border: "none",
-              padding: "12px 25px",
-              borderRadius: "12px",
-              cursor: "pointer",
-              fontWeight: "bold",
-              fontSize: "16px"
+              display: "flex",
+              gap: "20px",
+              flexWrap: "wrap",
+              alignItems: "center"
             }}
           >
-            🍟 Menu
-          </button>
 
-          <button
-            onClick={() => navigate("/cart")}
-            style={{
-              background: "#111827",
-              color: "white",
-              border: "2px solid #ffb400",
-              padding: "12px 25px",
-              borderRadius: "12px",
-              cursor: "pointer",
-              fontSize: "16px"
-            }}
-          >
-            🛒 Cart ({cartItems.length})
-          </button>
+            {/* Welcome */}
 
-          <button
-            onClick={() => navigate("/address")}
-            style={{
-              background: "#2196f3",
-              color: "white",
-              border: "none",
-              padding: "12px 25px",
-              borderRadius: "12px",
-              cursor: "pointer",
-              fontSize: "16px"
-            }}
-          >
-            🏠 Address
-          </button>
-
-          <button
-            onClick={() => navigate("/payment")}
-            style={{
-              background: "purple",
-              color: "white",
-              border: "none",
-              padding: "12px 25px",
-              borderRadius: "12px",
-              cursor: "pointer",
-              fontSize: "16px"
-            }}
-          >
-            💳 Payment
-          </button>
-
-          {/* Logout Button */}
-
-          <button
-            onClick={() => {
-
-              localStorage.removeItem(
-                "isLoggedIn"
-              );
-
-              navigate("/login");
-
-            }}
-            style={{
-              background: "red",
-              color: "white",
-              border: "none",
-              padding: "12px 25px",
-              borderRadius: "12px",
-              cursor: "pointer",
-              fontSize: "16px"
-            }}
-          >
-            🚪 Logout
-          </button>
-
-        </div>
-
-      </div>
-
-      {/* Hero Section */}
-
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: "40px",
-          background: "#0f172a",
-          padding: "40px",
-          borderRadius: "30px"
-        }}
-      >
-
-        <div>
-
-          <h1
-            style={{
-              fontSize: "70px",
-              lineHeight: "90px"
-            }}
-          >
-            GOOD FOOD
-            <br />
-
-            <span
+            <h3
               style={{
                 color: "#ffb400"
               }}
             >
-              GOOD VIBES
-            </span>
+              Welcome Amar 👋
+            </h3>
 
+            <button
+              onClick={() =>
+                navigate("/menu")
+              }
+              style={menuBtn}
+            >
+              🍟 Menu
+            </button>
+
+            <button
+              onClick={() =>
+                navigate("/cart")
+              }
+              style={cartBtn}
+            >
+              🛒 Cart (
+              {cartItems.length}
+              )
+            </button>
+
+            <button
+              onClick={() =>
+                navigate("/address")
+              }
+              style={addressBtn}
+            >
+              🏠 Address
+            </button>
+
+            <button
+              onClick={() =>
+                navigate("/payment")
+              }
+              style={paymentBtn}
+            >
+              💳 Payment
+            </button>
+
+            {/* Logout */}
+
+            <button
+              onClick={handleLogout}
+              style={logoutBtn}
+            >
+              🚪 Logout
+            </button>
+
+          </div>
+
+        </div>
+
+        {/* Hero Section */}
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent:
+              "space-between",
+
+            alignItems: "center",
+
+            flexWrap: "wrap",
+
+            gap: "40px",
+
+            background: "#0f172a",
+
+            padding: "50px",
+
+            borderRadius: "30px",
+
+            boxShadow:
+              "0 0 30px rgba(255,180,0,0.1)"
+          }}
+        >
+
+          <div>
+
+            <h1
+              style={{
+                fontSize: "70px",
+                lineHeight: "90px",
+                marginBottom: "20px"
+              }}
+            >
+              HOT & CRISPY
+              <br />
+
+              <span
+                style={{
+                  color: "#ffb400"
+                }}
+              >
+                FAST FOOD 🔥
+              </span>
+
+            </h1>
+
+            <p
+              style={{
+                fontSize: "22px",
+                color: "#cbd5e1",
+                maxWidth: "600px"
+              }}
+            >
+              Delicious burgers,
+              crispy fries and
+              refreshing drinks
+              delivered instantly
+              to your doorstep
+              🍔🍟🥤
+            </p>
+
+            <button
+              onClick={() =>
+                navigate("/menu")
+              }
+              style={{
+                background: "#ffb400",
+                color: "black",
+                border: "none",
+                padding: "15px 35px",
+                borderRadius: "14px",
+                cursor: "pointer",
+                fontSize: "18px",
+                fontWeight: "bold",
+                marginTop: "25px",
+                transition: "0.3s",
+                boxShadow:
+                  "0 0 20px rgba(255,180,0,0.5)"
+              }}
+            >
+              🍟 Order Now
+            </button>
+
+          </div>
+
+          {/* Hero Image */}
+
+          <img
+            src={burger}
+            alt="burger"
+            style={{
+              width: "500px",
+              borderRadius: "30px",
+              maxWidth: "100%",
+              boxShadow:
+                "0 0 40px rgba(255,180,0,0.3)"
+            }}
+          />
+
+        </div>
+
+        {/* Offer Banner */}
+
+        <div
+          style={{
+            marginTop: "40px",
+            background:
+              "linear-gradient(90deg,#ffb400,#ff5722)",
+
+            padding: "20px",
+
+            borderRadius: "20px",
+
+            textAlign: "center",
+
+            color: "black",
+
+            fontWeight: "bold",
+
+            fontSize: "24px",
+
+            boxShadow:
+              "0 0 20px rgba(255,180,0,0.3)"
+          }}
+        >
+          🔥 Flat 50% OFF on
+          Burgers This Weekend 🍔
+        </div>
+
+        {/* Footer */}
+
+        <div
+          style={{
+            marginTop: "60px",
+            textAlign: "center",
+            padding: "30px",
+            borderTop:
+              "1px solid #334155"
+          }}
+        >
+
+          <h2
+            style={{
+              color: "#ffb400",
+              letterSpacing: "2px",
+              fontSize: "22px"
+            }}
+          >
+            🚀 Developed By
+          </h2>
+
+          <h1
+            style={{
+              background:
+                "linear-gradient(90deg,#ffb400,#ff5722,#ff00c8)",
+
+              WebkitBackgroundClip:
+                "text",
+
+              WebkitTextFillColor:
+                "transparent",
+
+              fontSize: "40px",
+
+              marginTop: "10px"
+            }}
+          >
+            Madala Amarnadh
           </h1>
 
           <p
             style={{
-              fontSize: "22px",
-              color: "#cbd5e1"
+              color: "#94a3b8",
+              marginTop: "10px",
+              fontSize: "16px"
             }}
           >
-            Crispy fries, juicy burgers and refreshing drinks 🍔🍟🥤
+            Building modern food
+            experiences with
+            React ⚡
           </p>
 
-          <button
-            onClick={() => navigate("/menu")}
+          <p
             style={{
-              background: "#ffb400",
-              color: "black",
-              border: "none",
-              padding: "15px 35px",
-              borderRadius: "14px",
-              cursor: "pointer",
-              fontSize: "18px",
-              fontWeight: "bold",
-              marginTop: "20px"
+              color: "#cbd5e1",
+              marginTop: "10px"
             }}
           >
-            🍟 Order Now
-          </button>
+            📧
+            brofries@gmail.com
+          </p>
 
         </div>
 
-        <img
-          src={burger}
-          alt="burger"
-          style={{
-            width: "450px",
-            borderRadius: "30px",
-            maxWidth: "100%"
-          }}
-        />
-
       </div>
 
-      {/* Footer */}
-
-      <div
-        style={{
-          marginTop: "60px",
-          textAlign: "center",
-          padding: "20px",
-          borderTop: "1px solid #334155"
-        }}
-      >
-
-        <h2
-          style={{
-            color: "#ffb400",
-            letterSpacing: "2px",
-            fontSize: "22px"
-          }}
-        >
-          🚀 Developed By
-        </h2>
-
-        <h1
-          style={{
-            background:
-              "linear-gradient(90deg,#ffb400,#ff5722,#ff00c8)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            fontSize: "40px",
-            marginTop: "10px"
-          }}
-        >
-          Madala Amarnadh
-        </h1>
-
-        <p
-          style={{
-            color: "#94a3b8",
-            marginTop: "10px",
-            fontSize: "16px"
-          }}
-        >
-          Building modern food experiences with React ⚡
-        </p>
-
-      </div>
+      <ToastContainer />
 
     </div>
 
   );
 }
+
+// BUTTON STYLES
+
+const menuBtn = {
+
+  background: "#ffb400",
+
+  color: "black",
+
+  border: "none",
+
+  padding: "12px 25px",
+
+  borderRadius: "12px",
+
+  cursor: "pointer",
+
+  fontWeight: "bold",
+
+  fontSize: "16px",
+
+  transition: "0.3s",
+
+  boxShadow:
+    "0 0 20px rgba(255,180,0,0.3)"
+
+};
+
+const cartBtn = {
+
+  background: "#111827",
+
+  color: "white",
+
+  border: "2px solid #ffb400",
+
+  padding: "12px 25px",
+
+  borderRadius: "12px",
+
+  cursor: "pointer",
+
+  fontSize: "16px",
+
+  transition: "0.3s"
+
+};
+
+const addressBtn = {
+
+  background: "#2196f3",
+
+  color: "white",
+
+  border: "none",
+
+  padding: "12px 25px",
+
+  borderRadius: "12px",
+
+  cursor: "pointer",
+
+  fontSize: "16px",
+
+  transition: "0.3s"
+
+};
+
+const paymentBtn = {
+
+  background: "purple",
+
+  color: "white",
+
+  border: "none",
+
+  padding: "12px 25px",
+
+  borderRadius: "12px",
+
+  cursor: "pointer",
+
+  fontSize: "16px",
+
+  transition: "0.3s"
+
+};
+
+const logoutBtn = {
+
+  background: "red",
+
+  color: "white",
+
+  border: "none",
+
+  padding: "12px 25px",
+
+  borderRadius: "12px",
+
+  cursor: "pointer",
+
+  fontSize: "16px",
+
+  transition: "0.3s"
+
+};
 
 export default Dashboard;
