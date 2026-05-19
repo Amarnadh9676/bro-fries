@@ -433,6 +433,45 @@ function Dashboard() {
 
         </motion.div>
 
+        {/* FOOTER */}
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+
+          style={{
+            marginTop: "50px",
+            textAlign: "center",
+            padding: "20px",
+            background: "#0f172a",
+            borderRadius: "20px",
+            boxShadow:
+              "0 0 20px rgba(255,180,0,0.1)"
+          }}
+        >
+          <h3
+            style={{
+              color: "#ffb400",
+              fontSize: "22px",
+              margin: 0,
+              letterSpacing: "1px"
+            }}
+          >
+            Designed & Developed ❤️ By Madala Amarnadh
+          </h3>
+
+          <p
+            style={{
+              color: "#cbd5e1",
+              marginTop: "10px",
+              fontSize: "15px"
+            }}
+          >
+            © 2026 Bro Fries | All Rights Reserved
+          </p>
+        </motion.div>
+
       </motion.div>
 
       <ToastContainer />
