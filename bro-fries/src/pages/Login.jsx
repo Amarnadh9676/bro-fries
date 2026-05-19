@@ -9,6 +9,13 @@ import logo from "../images/logo.png";
 
 import { supabase } from "../supabase";
 
+import {
+  ToastContainer,
+  toast
+} from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
+
 function Login() {
 
   const navigate = useNavigate();
@@ -31,13 +38,15 @@ function Login() {
 
     if (error) {
 
-      alert(
+      toast.error(
         "Invalid Email or Password"
       );
 
     } else {
 
-      alert("Login Successful");
+      toast.success(
+        "Login Successful"
+      );
 
       navigate("/dashboard");
 
@@ -245,6 +254,8 @@ function Login() {
         </p>
 
       </div>
+
+      <ToastContainer />
 
     </div>
 
