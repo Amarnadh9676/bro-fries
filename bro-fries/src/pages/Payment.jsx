@@ -1,15 +1,56 @@
+import { useContext } from "react";
+
+import { CartContext }
+from "../Context/CartContext";
+
 function Payment() {
 
+  const { cartItems } =
+    useContext(CartContext);
+
+  // Total Amount
+
+  const total = cartItems.reduce(
+    (sum, item) =>
+      sum +
+      item.price * item.quantity,
+    0
+  );
+
+  // PhonePe Payment
+
   function phonepe() {
-    window.location.href = "https://www.phonepe.com/";
+
+    const upiLink =
+      `phonepe://pay?pa=madalaamar29@oksbi&pn=BroFries&am=${total}&cu=INR`;
+
+    window.location.href =
+      upiLink;
+
   }
+
+  // Google Pay
 
   function gpay() {
-    window.location.href = "https://pay.google.com/";
+
+    const upiLink =
+      `tez://upi/pay?pa=madalaamar29@oksbi&pn=BroFries&am=${total}&cu=INR`;
+
+    window.location.href =
+      upiLink;
+
   }
 
+  // Paytm
+
   function paytm() {
-    window.location.href = "https://paytm.com/";
+
+    const upiLink =
+      `paytmmp://pay?pa=madalaamar29@oksbi&pn=BroFries&am=${total}&cu=INR`;
+
+    window.location.href =
+      upiLink;
+
   }
 
   return (
@@ -31,20 +72,35 @@ function Payment() {
           background: "#111827",
           padding: "50px",
           borderRadius: "30px",
-          width: "400px",
+          width: "420px",
           textAlign: "center",
-          boxShadow: "0 0 30px rgba(255,180,0,0.2)"
+          boxShadow:
+            "0 0 30px rgba(255,180,0,0.2)"
         }}
       >
 
         <h1
           style={{
             color: "#ffb400",
-            marginBottom: "40px"
+            marginBottom: "20px"
           }}
         >
           💳 Payment Options
         </h1>
+
+        {/* Total */}
+
+        <h2
+          style={{
+            marginBottom: "35px",
+            color: "#22c55e"
+          }}
+        >
+          Total Amount:
+          ₹{total}
+        </h2>
+
+        {/* PhonePe */}
 
         <button
           onClick={phonepe}
@@ -61,8 +117,10 @@ function Payment() {
             fontWeight: "bold"
           }}
         >
-          PhonePe
+          📱 Pay with PhonePe
         </button>
+
+        {/* Google Pay */}
 
         <button
           onClick={gpay}
@@ -79,8 +137,10 @@ function Payment() {
             fontWeight: "bold"
           }}
         >
-          Google Pay
+          💙 Pay with Google Pay
         </button>
+
+        {/* Paytm */}
 
         <button
           onClick={paytm}
@@ -97,8 +157,10 @@ function Payment() {
             fontWeight: "bold"
           }}
         >
-          Paytm
+          💠 Pay with Paytm
         </button>
+
+        {/* COD */}
 
         <button
           style={{
@@ -113,7 +175,7 @@ function Payment() {
             fontWeight: "bold"
           }}
         >
-          Cash on Delivery
+          🚚 Cash on Delivery
         </button>
 
       </div>
