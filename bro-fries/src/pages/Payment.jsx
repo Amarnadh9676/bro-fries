@@ -171,6 +171,11 @@ function Payment() {
         <button
           onClick={() => {
 
+            localStorage.setItem(
+              "orderStatus",
+              "✅ Order Confirmed"
+            );
+
             alert(
               "Payment Successful 🎉"
             );
@@ -198,6 +203,11 @@ function Payment() {
 
         <button
           onClick={() => {
+
+            localStorage.setItem(
+              "orderStatus",
+              "✅ Order Confirmed"
+            );
 
             alert(
               "Order Placed Successfully 🎉"
