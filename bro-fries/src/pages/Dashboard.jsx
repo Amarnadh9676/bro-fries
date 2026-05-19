@@ -6,8 +6,7 @@ import {
   useState
 } from "react";
 
-import { motion }
-from "framer-motion";
+import { motion } from "framer-motion";
 
 import { CartContext } from "../Context/CartContext";
 
@@ -28,17 +27,15 @@ function Dashboard() {
 
   const navigate = useNavigate();
 
+  const { cartItems } =
+    useContext(CartContext);
+
   // USER NAME STATE
 
   const [userName, setUserName] =
     useState("");
 
-  // Cart Context
-
-  const { cartItems } =
-    useContext(CartContext);
-
-  // GET USER NAME
+  // GET USER DETAILS
 
   useEffect(() => {
 
@@ -51,8 +48,21 @@ function Dashboard() {
 
       if (user) {
 
+        // GET NAME FROM LOCAL STORAGE
+
+        const savedName =
+          localStorage.getItem("userName");
+
         setUserName(
-          user.user_metadata.name
+
+          savedName ||
+
+          user.user_metadata?.name ||
+
+          user.email?.split("@")[0] ||
+
+          "Bro"
+
         );
 
       }
@@ -63,7 +73,7 @@ function Dashboard() {
 
   }, []);
 
-  // Logout Function
+  // LOGOUT
 
   const handleLogout = async () => {
 
@@ -87,8 +97,6 @@ function Dashboard() {
       }}
     >
 
-      {/* Main Container */}
-
       <motion.div
 
         initial={{
@@ -111,7 +119,7 @@ function Dashboard() {
         }}
       >
 
-        {/* Navbar */}
+        {/* NAVBAR */}
 
         <motion.div
 
@@ -121,19 +129,20 @@ function Dashboard() {
 
           style={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent:
+              "space-between",
             alignItems: "center",
             background: "#0f172a",
-            padding: "15px 30px",
+            padding: "20px 30px",
             borderRadius: "20px",
             marginBottom: "30px",
             flexWrap: "wrap",
             boxShadow:
-              "0 0 20px rgba(255,180,0,0.15)"
+              "0 0 25px rgba(255,180,0,0.15)"
           }}
         >
 
-          {/* Logo Section */}
+          {/* LOGO */}
 
           <div
             style={{
@@ -144,12 +153,16 @@ function Dashboard() {
           >
 
             <motion.img
+
               whileHover={{
                 rotate: 5,
                 scale: 1.05
               }}
+
               src={logo}
+
               alt="logo"
+
               style={{
                 width: "90px",
                 height: "90px",
@@ -168,7 +181,7 @@ function Dashboard() {
                 style={{
                   color: "#ffb400",
                   fontSize: "42px",
-                  margin: "0"
+                  margin: 0
                 }}
               >
                 Bro Fries 🔥
@@ -187,7 +200,7 @@ function Dashboard() {
 
           </div>
 
-          {/* Navbar Buttons */}
+          {/* BUTTONS */}
 
           <div
             style={{
@@ -198,14 +211,16 @@ function Dashboard() {
             }}
           >
 
-            {/* Dynamic Welcome */}
+            {/* DYNAMIC USER NAME */}
 
             <h3
               style={{
-                color: "#ffb400"
+                color: "#ffb400",
+                fontSize: "28px",
+                fontWeight: "bold"
               }}
             >
-              Welcome {userName} 👋
+              👋 Welcome {userName}
             </h3>
 
             <motion.button
@@ -270,8 +285,6 @@ function Dashboard() {
               💳 Payment
             </motion.button>
 
-            {/* Logout */}
-
             <motion.button
               whileHover={{
                 scale: 1.08
@@ -289,7 +302,7 @@ function Dashboard() {
 
         </motion.div>
 
-        {/* Hero Section */}
+        {/* HERO SECTION */}
 
         <motion.div
 
@@ -311,19 +324,12 @@ function Dashboard() {
             display: "flex",
             justifyContent:
               "space-between",
-
             alignItems: "center",
-
             flexWrap: "wrap",
-
             gap: "40px",
-
             background: "#0f172a",
-
             padding: "50px",
-
             borderRadius: "30px",
-
             boxShadow:
               "0 0 30px rgba(255,180,0,0.1)"
           }}
@@ -390,7 +396,6 @@ function Dashboard() {
                 fontSize: "18px",
                 fontWeight: "bold",
                 marginTop: "25px",
-                transition: "0.3s",
                 boxShadow:
                   "0 0 20px rgba(255,180,0,0.5)"
               }}
@@ -400,7 +405,7 @@ function Dashboard() {
 
           </div>
 
-          {/* Hero Image */}
+          {/* HERO IMAGE */}
 
           <motion.img
 
@@ -427,109 +432,6 @@ function Dashboard() {
           />
 
         </motion.div>
-
-        {/* Offer Banner */}
-
-        <motion.div
-
-          animate={{
-            scale: [1, 1.02, 1]
-          }}
-
-          transition={{
-            duration: 2,
-            repeat: Infinity
-          }}
-
-          style={{
-            marginTop: "40px",
-            background:
-              "linear-gradient(90deg,#ffb400,#ff5722)",
-
-            padding: "20px",
-
-            borderRadius: "20px",
-
-            textAlign: "center",
-
-            color: "black",
-
-            fontWeight: "bold",
-
-            fontSize: "24px",
-
-            boxShadow:
-              "0 0 20px rgba(255,180,0,0.3)"
-          }}
-        >
-          🔥 Flat 50% OFF on
-          Burgers This Weekend 🍔
-        </motion.div>
-
-        {/* Footer */}
-
-        <div
-          style={{
-            marginTop: "60px",
-            textAlign: "center",
-            padding: "30px",
-            borderTop:
-              "1px solid #334155"
-          }}
-        >
-
-          <h2
-            style={{
-              color: "#ffb400",
-              letterSpacing: "2px",
-              fontSize: "22px"
-            }}
-          >
-            🚀 Developed By
-          </h2>
-
-          <h1
-            style={{
-              background:
-                "linear-gradient(90deg,#ffb400,#ff5722,#ff00c8)",
-
-              WebkitBackgroundClip:
-                "text",
-
-              WebkitTextFillColor:
-                "transparent",
-
-              fontSize: "40px",
-
-              marginTop: "10px"
-            }}
-          >
-            Madala Amarnadh
-          </h1>
-
-          <p
-            style={{
-              color: "#94a3b8",
-              marginTop: "10px",
-              fontSize: "16px"
-            }}
-          >
-            Building modern food
-            experiences with
-            React ⚡
-          </p>
-
-          <p
-            style={{
-              color: "#cbd5e1",
-              marginTop: "10px"
-            }}
-          >
-            📧
-            brofries@gmail.com
-          </p>
-
-        </div>
 
       </motion.div>
 
@@ -558,12 +460,7 @@ const menuBtn = {
 
   fontWeight: "bold",
 
-  fontSize: "16px",
-
-  transition: "0.3s",
-
-  boxShadow:
-    "0 0 20px rgba(255,180,0,0.3)"
+  fontSize: "16px"
 
 };
 
@@ -581,9 +478,7 @@ const cartBtn = {
 
   cursor: "pointer",
 
-  fontSize: "16px",
-
-  transition: "0.3s"
+  fontSize: "16px"
 
 };
 
@@ -601,9 +496,7 @@ const addressBtn = {
 
   cursor: "pointer",
 
-  fontSize: "16px",
-
-  transition: "0.3s"
+  fontSize: "16px"
 
 };
 
@@ -621,9 +514,7 @@ const paymentBtn = {
 
   cursor: "pointer",
 
-  fontSize: "16px",
-
-  transition: "0.3s"
+  fontSize: "16px"
 
 };
 
@@ -641,9 +532,7 @@ const logoutBtn = {
 
   cursor: "pointer",
 
-  fontSize: "16px",
-
-  transition: "0.3s"
+  fontSize: "16px"
 
 };
 

@@ -42,7 +42,7 @@ function Login() {
 
     setLoading(true);
 
-    const { error } =
+    const { data, error } =
       await supabase.auth.signInWithPassword({
 
         email,
@@ -61,6 +61,16 @@ function Login() {
       );
 
     } else {
+
+      // SAVE USER NAME
+
+      const userName =
+        data.user.user_metadata.name;
+
+      localStorage.setItem(
+        "userName",
+        userName
+      );
 
       toast.success(
         "Login Successful"
@@ -365,7 +375,7 @@ const buttonStyle = {
   color: "black",
 
   boxShadow:
-    "0 0 20px rgba(255,180,0,0.5)"
+    "0 0 20px rgba(10, 8, 2, 0.5)"
 
 };
 

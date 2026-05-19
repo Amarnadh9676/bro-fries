@@ -97,6 +97,13 @@ function Register() {
 
     } else {
 
+      // SAVE USER NAME
+
+      localStorage.setItem(
+        "userName",
+        name
+      );
+
       alert(
         "Registered Successfully"
       );
