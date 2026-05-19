@@ -1,9 +1,15 @@
 import { useContext } from "react";
 
+import { useNavigate }
+from "react-router-dom";
+
 import { CartContext }
 from "../Context/CartContext";
 
 function Payment() {
+
+  const navigate =
+    useNavigate();
 
   const { cartItems } =
     useContext(CartContext);
@@ -160,9 +166,46 @@ function Payment() {
           💠 Pay with Paytm
         </button>
 
+        {/* Payment Completed */}
+
+        <button
+          onClick={() => {
+
+            alert(
+              "Payment Successful 🎉"
+            );
+
+            navigate("/success");
+
+          }}
+          style={{
+            width: "100%",
+            padding: "16px",
+            marginBottom: "20px",
+            background: "#22c55e",
+            color: "white",
+            border: "none",
+            borderRadius: "14px",
+            fontSize: "18px",
+            cursor: "pointer",
+            fontWeight: "bold"
+          }}
+        >
+          ✅ I Have Completed Payment
+        </button>
+
         {/* COD */}
 
         <button
+          onClick={() => {
+
+            alert(
+              "Order Placed Successfully 🎉"
+            );
+
+            navigate("/success");
+
+          }}
           style={{
             width: "100%",
             padding: "16px",
