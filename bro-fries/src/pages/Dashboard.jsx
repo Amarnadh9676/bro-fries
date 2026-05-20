@@ -30,10 +30,15 @@ function Dashboard() {
   const { cartItems } =
     useContext(CartContext);
 
-  // USER NAME STATE
+  // USER NAME
 
   const [userName, setUserName] =
     useState("");
+
+  // MENU STATE
+
+  const [menuOpen, setMenuOpen] =
+    useState(false);
 
   // GET USER DETAILS
 
@@ -47,8 +52,6 @@ function Dashboard() {
         await supabase.auth.getUser();
 
       if (user) {
-
-        // GET NAME FROM LOCAL STORAGE
 
         const savedName =
           localStorage.getItem("userName");
@@ -92,8 +95,9 @@ function Dashboard() {
         background: "#050816",
         minHeight: "100vh",
         color: "white",
-        padding: "30px",
-        fontFamily: "Arial"
+        padding: "20px",
+        fontFamily: "Arial",
+        overflow: "hidden"
       }}
     >
 
@@ -133,12 +137,17 @@ function Dashboard() {
               "space-between",
             alignItems: "center",
             background: "#0f172a",
-            padding: "20px 30px",
+            padding:
+              window.innerWidth < 768
+                ? "15px"
+                : "20px 30px",
             borderRadius: "20px",
             marginBottom: "30px",
             flexWrap: "wrap",
             boxShadow:
-              "0 0 25px rgba(255,180,0,0.15)"
+              "0 0 25px rgba(255,180,0,0.15)",
+            position: "relative",
+            zIndex: 9999
           }}
         >
 
@@ -164,12 +173,21 @@ function Dashboard() {
               alt="logo"
 
               style={{
-                width: "90px",
-                height: "90px",
+                width:
+                  window.innerWidth < 768
+                    ? "70px"
+                    : "90px",
+
+                height:
+                  window.innerWidth < 768
+                    ? "70px"
+                    : "90px",
+
                 borderRadius: "50%",
                 objectFit: "cover",
                 border:
                   "3px solid #ffb400",
+
                 boxShadow:
                   "0 0 20px rgba(255,180,0,0.5)"
               }}
@@ -180,7 +198,12 @@ function Dashboard() {
               <h1
                 style={{
                   color: "#ffb400",
-                  fontSize: "42px",
+
+                  fontSize:
+                    window.innerWidth < 768
+                      ? "28px"
+                      : "42px",
+
                   margin: 0
                 }}
               >
@@ -190,7 +213,12 @@ function Dashboard() {
               <p
                 style={{
                   color: "#cbd5e1",
-                  marginTop: "5px"
+                  marginTop: "5px",
+
+                  fontSize:
+                    window.innerWidth < 768
+                      ? "14px"
+                      : "16px"
                 }}
               >
                 Fastest Food Delivery 🍟
@@ -200,103 +228,176 @@ function Dashboard() {
 
           </div>
 
-          {/* BUTTONS */}
+          {/* MENU */}
 
           <div
             style={{
-              display: "flex",
-              gap: "20px",
-              flexWrap: "wrap",
-              alignItems: "center"
+              position: "relative"
             }}
           >
 
-            {/* DYNAMIC USER NAME */}
+            {/* MENU BUTTON */}
 
-            <h3
+            <motion.button
+
+              whileHover={{
+                scale: 1.1
+              }}
+
+              whileTap={{
+                scale: 0.95
+              }}
+
+              onClick={() =>
+                setMenuOpen(!menuOpen)
+              }
+
               style={{
-                color: "#ffb400",
+                background: "#ffb400",
+                color: "black",
+                border: "none",
+                padding: "12px 20px",
+                borderRadius: "12px",
+                cursor: "pointer",
                 fontSize: "28px",
                 fontWeight: "bold"
               }}
             >
-              👋 Welcome {userName}
-            </h3>
-
-            <motion.button
-              whileHover={{
-                scale: 1.08
-              }}
-              whileTap={{
-                scale: 0.95
-              }}
-              onClick={() =>
-                navigate("/menu")
-              }
-              style={menuBtn}
-            >
-              🍟 Menu
+              ☰
             </motion.button>
 
-            <motion.button
-              whileHover={{
-                scale: 1.08
-              }}
-              whileTap={{
-                scale: 0.95
-              }}
-              onClick={() =>
-                navigate("/cart")
-              }
-              style={cartBtn}
-            >
-              🛒 Cart (
-              {cartItems.length}
-              )
-            </motion.button>
+            {/* DROPDOWN */}
 
-            <motion.button
-              whileHover={{
-                scale: 1.08
-              }}
-              whileTap={{
-                scale: 0.95
-              }}
-              onClick={() =>
-                navigate("/address")
-              }
-              style={addressBtn}
-            >
-              🏠 Address
-            </motion.button>
+            {menuOpen && (
 
-            <motion.button
-              whileHover={{
-                scale: 1.08
-              }}
-              whileTap={{
-                scale: 0.95
-              }}
-              onClick={() =>
-                navigate("/payment")
-              }
-              style={paymentBtn}
-            >
-              💳 Payment
-            </motion.button>
+              <motion.div
 
-            <motion.button
-              whileHover={{
-                scale: 1.08
-              }}
-              whileTap={{
-                scale: 0.95
-              }}
-              onClick={handleLogout}
-              style={logoutBtn}
-            >
-              🚪 Logout
-            </motion.button>
+                initial={{
+                  opacity: 0,
+                  y: -20
+                }}
+
+                animate={{
+                  opacity: 1,
+                  y: 0
+                }}
+
+                transition={{
+                  duration: 0.3
+                }}
+
+                style={{
+                  position: "absolute",
+                  right: 0,
+                  top: "70px",
+                  background: "#0f172a",
+                  padding: "25px",
+                  borderRadius: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "15px",
+
+                  width:
+                    window.innerWidth < 768
+                      ? "220px"
+                      : "250px",
+
+                  zIndex: 99999,
+
+                  height: "400px",
+
+                  overflowY: "auto",
+
+                  boxShadow:
+                    "0 0 30px rgba(255,180,0,0.25)"
+                }}
+              >
+
+                <h3
+                  style={{
+                    color: "#ffb400",
+                    textAlign: "center",
+                    marginBottom: "10px"
+                  }}
+                >
+                  👋 {userName}
+                </h3>
+
+                <button
+                  onClick={() =>
+                    navigate("/menu")
+                  }
+                  style={menuBtn}
+                >
+                  🍟 Menu
+                </button>
+
+                <button
+                  onClick={() =>
+                    navigate("/cart")
+                  }
+                  style={cartBtn}
+                >
+                  🛒 Cart (
+                  {cartItems.length}
+                  )
+                </button>
+
+                <button
+                  onClick={() =>
+                    navigate("/address")
+                  }
+                  style={addressBtn}
+                >
+                  🏠 Address
+                </button>
+
+                <button
+                  onClick={() =>
+                    navigate("/payment")
+                  }
+                  style={paymentBtn}
+                >
+                  💳 Payment
+                </button>
+
+                <button
+                  onClick={() =>
+                    navigate("/about")
+                  }
+                  style={aboutBtn}
+                >
+                  ℹ️ About
+                </button>
+
+                <button
+                  onClick={() =>
+                    navigate("/contact")
+                  }
+                  style={contactBtn}
+                >
+                  📞 Contact
+                </button>
+
+                <button
+                  onClick={() =>
+                    navigate("/location")
+                  }
+                  style={locationBtn}
+                >
+                  📍 Location
+                </button>
+
+                <button
+                  onClick={handleLogout}
+                  style={logoutBtn}
+                >
+                  🚪 Logout
+                </button>
+
+              </motion.div>
+
+            )}
 
           </div>
 
@@ -328,10 +429,20 @@ function Dashboard() {
             flexWrap: "wrap",
             gap: "40px",
             background: "#0f172a",
-            padding: "50px",
+
+            padding:
+              window.innerWidth < 768
+                ? "25px"
+                : "50px",
+
             borderRadius: "30px",
+
             boxShadow:
-              "0 0 30px rgba(255,180,0,0.1)"
+              "0 0 30px rgba(255,180,0,0.1)",
+
+            position: "relative",
+
+            zIndex: 1
           }}
         >
 
@@ -339,8 +450,17 @@ function Dashboard() {
 
             <h1
               style={{
-                fontSize: "70px",
-                lineHeight: "90px",
+
+                fontSize:
+                  window.innerWidth < 768
+                    ? "42px"
+                    : "70px",
+
+                lineHeight:
+                  window.innerWidth < 768
+                    ? "55px"
+                    : "90px",
+
                 marginBottom: "20px"
               }}
             >
@@ -359,8 +479,13 @@ function Dashboard() {
 
             <p
               style={{
-                fontSize: "22px",
+                fontSize:
+                  window.innerWidth < 768
+                    ? "18px"
+                    : "22px",
+
                 color: "#cbd5e1",
+
                 maxWidth: "600px"
               }}
             >
@@ -396,6 +521,7 @@ function Dashboard() {
                 fontSize: "18px",
                 fontWeight: "bold",
                 marginTop: "25px",
+
                 boxShadow:
                   "0 0 20px rgba(255,180,0,0.5)"
               }}
@@ -423,11 +549,20 @@ function Dashboard() {
             alt="burger"
 
             style={{
-              width: "500px",
+
+              width:
+                window.innerWidth < 768
+                  ? "320px"
+                  : "500px",
+
               borderRadius: "30px",
+
               maxWidth: "100%",
+
               boxShadow:
-                "0 0 40px rgba(255,180,0,0.3)"
+                "0 0 40px rgba(255,180,0,0.3)",
+
+              zIndex: 1
             }}
           />
 
@@ -436,9 +571,18 @@ function Dashboard() {
         {/* FOOTER */}
 
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+
+          initial={{
+            opacity: 0
+          }}
+
+          animate={{
+            opacity: 1
+          }}
+
+          transition={{
+            duration: 1
+          }}
 
           style={{
             marginTop: "50px",
@@ -446,30 +590,45 @@ function Dashboard() {
             padding: "20px",
             background: "#0f172a",
             borderRadius: "20px",
+
             boxShadow:
               "0 0 20px rgba(255,180,0,0.1)"
           }}
         >
+
           <h3
             style={{
               color: "#ffb400",
-              fontSize: "22px",
+
+              fontSize:
+                window.innerWidth < 768
+                  ? "18px"
+                  : "22px",
+
               margin: 0,
+
               letterSpacing: "1px"
             }}
           >
-            Designed & Developed ❤️ By Madala Amarnadh
+            Designed & Developed ❤️
+            By Madala Amarnadh
           </h3>
 
           <p
             style={{
               color: "#cbd5e1",
               marginTop: "10px",
-              fontSize: "15px"
+
+              fontSize:
+                window.innerWidth < 768
+                  ? "12px"
+                  : "15px"
             }}
           >
-            © 2026 Bro Fries | All Rights Reserved
+            © 2026 Bro Fries |
+            All Rights Reserved
           </p>
+
         </motion.div>
 
       </motion.div>
@@ -484,95 +643,87 @@ function Dashboard() {
 // BUTTON STYLES
 
 const menuBtn = {
-
   background: "#ffb400",
-
   color: "black",
-
   border: "none",
-
   padding: "12px 25px",
-
   borderRadius: "12px",
-
   cursor: "pointer",
-
   fontWeight: "bold",
-
   fontSize: "16px"
-
 };
 
 const cartBtn = {
-
   background: "#111827",
-
   color: "white",
-
   border: "2px solid #ffb400",
-
   padding: "12px 25px",
-
   borderRadius: "12px",
-
   cursor: "pointer",
-
   fontSize: "16px"
-
 };
 
 const addressBtn = {
-
   background: "#2196f3",
-
   color: "white",
-
   border: "none",
-
   padding: "12px 25px",
-
   borderRadius: "12px",
-
   cursor: "pointer",
-
   fontSize: "16px"
-
 };
 
 const paymentBtn = {
-
   background: "purple",
-
   color: "white",
-
   border: "none",
-
   padding: "12px 25px",
-
   borderRadius: "12px",
-
   cursor: "pointer",
-
   fontSize: "16px"
+};
 
+const aboutBtn = {
+  background: "#14b8a6",
+  color: "white",
+  border: "none",
+  padding: "12px 25px",
+  borderRadius: "12px",
+  cursor: "pointer",
+  fontWeight: "bold",
+  fontSize: "16px"
+};
+
+const contactBtn = {
+  background: "#22c55e",
+  color: "white",
+  border: "none",
+  padding: "12px 25px",
+  borderRadius: "12px",
+  cursor: "pointer",
+  fontWeight: "bold",
+  fontSize: "16px"
+};
+
+const locationBtn = {
+  background: "#f97316",
+  color: "white",
+  border: "none",
+  padding: "12px 25px",
+  borderRadius: "12px",
+  cursor: "pointer",
+  fontWeight: "bold",
+  fontSize: "16px"
 };
 
 const logoutBtn = {
-
   background: "red",
-
   color: "white",
-
   border: "none",
-
   padding: "12px 25px",
-
   borderRadius: "12px",
-
   cursor: "pointer",
-
   fontSize: "16px"
-
 };
 
 export default Dashboard;

@@ -24,6 +24,18 @@ import ForgotPassword from "./pages/ForgotPassword";
 
 import Auth from "./pages/Auth";
 
+// IMPORT ABOUT PAGE
+
+import About from "./pages/About";
+
+// IMPORT CONTACT PAGE
+
+import Contact from "./pages/Contact";
+
+// IMPORT LOCATION PAGE
+
+import Location from "./pages/Location";
+
 import CartProvider from "./Context/CartContext";
 
 // IMPORT PROTECTED ROUTE
@@ -120,6 +132,39 @@ ReactDOM.createRoot(
           element={
             <ProtectedRoute>
               <Success />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* PROTECTED ABOUT PAGE */}
+
+        <Route
+          path="/about"
+          element={
+            <ProtectedRoute>
+              <About />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* PROTECTED CONTACT PAGE */}
+
+        <Route
+          path="/contact"
+          element={
+            <ProtectedRoute>
+              <Contact />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* PROTECTED LOCATION PAGE */}
+
+        <Route
+          path="/location"
+          element={
+            <ProtectedRoute>
+              <Location />
             </ProtectedRoute>
           }
         />
